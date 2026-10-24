@@ -2,310 +2,995 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasmitha's Royal Birthday 👑</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#170d2b">
+<title>Jasmitha | A Royal Birthday</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: "Trebuchet MS", Arial, sans-serif;
-            background: linear-gradient(135deg, #170b2e, #51266e, #9b4b91, #261044);
-            color: white;
-        }
+:root {
+    --pink: #ffc6e8;
+    --purple: #c8a3ff;
+    --gold: #f8d991;
+    --night: #10091f;
+}
 
-        .princess-scene {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px 15px;
-            overflow: hidden;
-            perspective: 1000px;
-        }
+* { box-sizing: border-box; }
 
-        .princess-scene::before {
-            content: "✦      ·       ✧       ·      ✦";
-            position: absolute;
-            top: 8%;
-            color: #ffe5ff;
-            font-size: 25px;
-            letter-spacing: 10px;
-            animation: twinkle 2s infinite alternate;
-        }
+html { scroll-behavior: smooth; }
 
-        .princess {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 25px;
-            animation: princessFloat 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px #ed9aff);
-        }
+body {
+    margin: 0;
+    color: #fff6ff;
+    font-family: 'Poppins', sans-serif;
+    background: var(--night);
+}
 
-        .crown {
-            font-size: 55px;
-            line-height: 1;
-            animation: crownGlow 1.5s infinite alternate;
-        }
+button { font: inherit; }
 
-        .princess-head {
-            font-size: clamp(90px, 18vw, 130px);
-            line-height: 1.2;
-            animation: headMove 4s ease-in-out infinite;
-        }
+section {
+    position: relative;
+    min-height: 100vh;
+    padding: 85px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    isolation: isolate;
+}
 
-        .princess-dress {
-            font-size: clamp(65px, 14vw, 90px);
-            line-height: 1.1;
-        }
+.royal-section {
+    background:
+        radial-gradient(ellipse at 50% 30%, #59306e 0%, transparent 48%),
+        radial-gradient(ellipse at 10% 90%, #302051 0%, transparent 45%),
+        linear-gradient(145deg, #10091f, #241233 55%, #10091f);
+}
 
-        .princess-message {
-            max-width: 700px;
-            margin: 35px 0 10px;
-            color: #ffe3ff;
-            font-size: clamp(25px, 6vw, 42px);
-            text-shadow: 0 0 12px #ed8dff, 0 0 30px #b34fff;
-            animation: messageGlow 2s infinite alternate;
-        }
+.royal-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .5;
+    background-image:
+        radial-gradient(2px 2px at 10% 20%, white 90%, transparent),
+        radial-gradient(2px 2px at 80% 30%, #ffe7ae 90%, transparent),
+        radial-gradient(2px 2px at 35% 75%, white 90%, transparent),
+        radial-gradient(3px 3px at 70% 85%, #ffc6e8 90%, transparent),
+        radial-gradient(2px 2px at 55% 12%, white 90%, transparent);
+    background-size: 190px 180px;
+    animation: starDrift 18s linear infinite;
+}
 
-        .subtitle {
-            font-size: clamp(15px, 3.5vw, 19px);
-            color: #ffe9f8;
-            line-height: 1.8;
-        }
+.eyebrow {
+    color: var(--gold);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+}
 
-        .magic-sparkle {
-            position: absolute;
-            font-size: 30px;
-            animation: sparkleFloat 3s ease-in-out infinite;
-            pointer-events: none;
-        }
+h1, h2, .letter-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+}
 
-        .sparkle1 {
-            top: 20%;
-            left: 15%;
-        }
+.hero-title {
+    font-size: clamp(43px, 9vw, 92px);
+    line-height: 1;
+    margin: 25px 0 15px;
+    background: linear-gradient(110deg, #fff5d5, #ffc4ea, #e3c7ff, #fff5d5);
+    background-size: 250% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: titleShine 6s linear infinite;
+    text-shadow: 0 0 45px #d78bff25;
+}
 
-        .sparkle2 {
-            top: 30%;
-            right: 15%;
-            animation-delay: 1s;
-        }
+.hero-subtitle {
+    color: #e9d9f0;
+    max-width: 520px;
+    line-height: 1.9;
+    font-size: 14px;
+    font-weight: 300;
+}
 
-        .sparkle3 {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 1.5s;
-        }
+.ornament {
+    color: var(--gold);
+    letter-spacing: 10px;
+    margin: 18px 0;
+}
 
-        .sparkle4 {
-            bottom: 25%;
-            right: 20%;
-            animation-delay: 0.5s;
-        }
+/* Original princess character made entirely with CSS */
+.princess-stage {
+    position: relative;
+    width: 270px;
+    height: 300px;
+    margin: 5px auto 15px;
+    display: grid;
+    place-items: center;
+    animation: princessFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 15px 28px #d68aff20);
+}
 
-        .birthday-button {
-            margin-top: 25px;
-            padding: 14px 28px;
-            border: 1px solid #ffe0ff;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #e78be9, #a44bd0);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 20px #c66cff;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+.princess-halo {
+    position: absolute;
+    width: 215px;
+    height: 215px;
+    border: 1px solid #f6d9ff55;
+    border-radius: 50%;
+    box-shadow: 0 0 50px #d58dff20, inset 0 0 35px #e5a9ff15;
+}
 
-        .birthday-button:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 35px #ffb6ff;
-        }
+.princess-halo::before,
+.princess-halo::after {
+    content: "✦";
+    position: absolute;
+    color: var(--gold);
+    font-size: 23px;
+    animation: twinkle 2s infinite alternate;
+}
 
-        .secret-message {
-            display: none;
-            max-width: 500px;
-            margin-top: 25px;
-            padding: 22px;
-            border: 1px solid #edb5ff;
-            border-radius: 20px;
-            background: rgba(35, 12, 57, 0.85);
-            color: #fff0ff;
-            line-height: 1.8;
-            box-shadow: 0 0 25px #c66cff;
-            animation: revealMessage 1s ease;
-        }
+.princess-halo::before { top: 8px; right: 22px; }
+.princess-halo::after { bottom: 25px; left: 3px; }
 
-        .secret-message.show {
-            display: block;
-        }
+.princess-character {
+    position: relative;
+    width: 155px;
+    height: 245px;
+    margin-top: 38px;
+}
 
-        .confetti {
-            position: fixed;
-            top: -20px;
-            z-index: 10;
-            pointer-events: none;
-            animation: confettiFall linear forwards;
-        }
+.princess-hair {
+    position: absolute;
+    width: 108px;
+    height: 112px;
+    left: 23px;
+    top: 24px;
+    border-radius: 48% 48% 42% 42%;
+    background: linear-gradient(100deg, #4a241e, #85503b 50%, #3a1a22);
+    box-shadow: inset -8px 0 0 #351a24;
+}
 
-        @keyframes princessFloat {
-            0%, 100% {
-                transform: translateY(0) rotateY(-8deg);
-            }
-            50% {
-                transform: translateY(-18px) rotateY(8deg);
-            }
-        }
+.princess-face {
+    position: absolute;
+    z-index: 2;
+    top: 35px;
+    left: 39px;
+    width: 78px;
+    height: 87px;
+    border-radius: 43% 43% 47% 47%;
+    background: linear-gradient(115deg, #ffe0c7, #f7bfa7);
+    box-shadow: inset -5px -3px 0 #d99782;
+}
 
-        @keyframes crownGlow {
-            from {
-                filter: drop-shadow(0 0 4px gold);
-                transform: translateY(0);
-            }
-            to {
-                filter: drop-shadow(0 0 20px #ffe66d);
-                transform: translateY(-5px);
-            }
-        }
+.princess-face::before {
+    content: "•  •";
+    white-space: pre;
+    position: absolute;
+    top: 28px;
+    left: 20px;
+    color: #43222a;
+    font-size: 17px;
+    letter-spacing: 12px;
+}
 
-        @keyframes headMove {
-            0%, 100% { transform: rotate(-4deg); }
-            50% { transform: rotate(4deg); }
-        }
+.princess-face::after {
+    content: "⌣";
+    position: absolute;
+    top: 39px;
+    left: 29px;
+    color: #b95468;
+    font-size: 21px;
+}
 
-        @keyframes sparkleFloat {
-            0%, 100% {
-                transform: translateY(0) scale(.8) rotate(0);
-                opacity: .5;
-            }
-            50% {
-                transform: translateY(-25px) scale(1.3) rotate(20deg);
-                opacity: 1;
-            }
-        }
+.princess-fringe {
+    position: absolute;
+    z-index: 3;
+    top: 26px;
+    left: 35px;
+    width: 84px;
+    height: 36px;
+    background: #613526;
+    border-radius: 65% 50% 35% 20%;
+    transform: rotate(-7deg);
+}
 
-        @keyframes messageGlow {
-            from { text-shadow: 0 0 8px #d98aff; }
-            to { text-shadow: 0 0 25px #ff9de2, 0 0 40px #bb68ff; }
-        }
+.princess-fringe::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 40px;
+    width: 37px;
+    height: 27px;
+    border-radius: 0 100% 10% 80%;
+    background: #774632;
+}
 
-        @keyframes twinkle {
-            from { opacity: .4; }
-            to { opacity: 1; }
-        }
+.princess-crown {
+    position: absolute;
+    z-index: 5;
+    top: 2px;
+    left: 47px;
+    width: 62px;
+    height: 33px;
+    background: linear-gradient(135deg, #fff1a7, #d9a43b);
+    clip-path: polygon(0 100%, 10% 15%, 35% 60%, 50% 0, 67% 60%, 92% 12%, 100% 100%);
+    filter: drop-shadow(0 0 8px #ffdf8a);
+}
 
-        @keyframes revealMessage {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+.princess-neck {
+    position: absolute;
+    z-index: 1;
+    top: 112px;
+    left: 65px;
+    width: 25px;
+    height: 25px;
+    background: #f2b89d;
+}
 
-        @keyframes confettiFall {
-            to {
-                transform: translateY(110vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
+.princess-body {
+    position: absolute;
+    z-index: 3;
+    top: 128px;
+    left: 18px;
+    width: 120px;
+    height: 108px;
+    background: linear-gradient(100deg, #7861c4, #d6a5ff 45%, #8a65c9);
+    clip-path: polygon(37% 0, 63% 0, 100% 100%, 0 100%);
+    filter: drop-shadow(0 0 8px #d8a3ff);
+}
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+.princess-body::after {
+    content: "✦";
+    position: absolute;
+    top: 34px;
+    left: 52px;
+    color: #fff0bc;
+    font-size: 18px;
+}
+
+.princess-collar {
+    position: absolute;
+    z-index: 4;
+    top: 123px;
+    left: 61px;
+    width: 36px;
+    height: 22px;
+    background: #fff0d2;
+    clip-path: polygon(0 0, 50% 50%, 100% 0, 70% 100%, 30% 100%);
+}
+
+.princess-sleeve {
+    position: absolute;
+    z-index: 4;
+    top: 134px;
+    left: 12px;
+    width: 38px;
+    height: 30px;
+    border-radius: 60% 20% 70% 30%;
+    background: #c9a2f5;
+    transform: rotate(25deg);
+}
+
+.princess-sleeve.right {
+    left: 105px;
+    transform: rotate(-25deg);
+}
+
+.princess-side-hair {
+    position: absolute;
+    z-index: 1;
+    top: 72px;
+    left: 19px;
+    width: 22px;
+    height: 79px;
+    border-radius: 50%;
+    background: #613526;
+}
+
+.princess-side-hair.right {
+    left: 111px;
+}
+
+.floating-heart {
+    position: absolute;
+    color: #ffc3ef;
+    font-size: 23px;
+    animation: heartRise 4s ease-in-out infinite;
+}
+
+.heart-a { top: 35px; left: 15px; }
+.heart-b { right: 10px; top: 100px; animation-delay: 1s; }
+.heart-c { left: 25px; bottom: 25px; animation-delay: 2s; }
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 24px;
+    padding: 14px 27px;
+    border: 1px solid #f6d99199;
+    border-radius: 999px;
+    background: linear-gradient(110deg, #f2d59a, #e9b9e8, #d5b7ff);
+    color: #26152f;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 8px 35px #e0a9ff20;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px #e0a9ff50;
+}
+
+.scroll-note {
+    margin-top: 34px;
+    color: #c8b2d4;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* Birthday cake */
+.cake-section {
+    background:
+        radial-gradient(ellipse at center, #3c1d50, transparent 65%),
+        #130b21;
+}
+
+.section-title {
+    font-size: clamp(36px, 7vw, 58px);
+    color: #ffe4f5;
+    margin: 16px 0;
+}
+
+.section-copy {
+    max-width: 470px;
+    color: #d9c8e6;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.cake-area {
+    position: relative;
+    width: 290px;
+    height: 260px;
+    margin: 35px auto 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.cake-plate {
+    position: absolute;
+    bottom: 14px;
+    width: 270px;
+    height: 19px;
+    border-radius: 50%;
+    background: linear-gradient(#f9e9ff, #c2a3d5);
+    box-shadow: 0 8px 22px #0005;
+}
+
+.cake-base {
+    position: absolute;
+    bottom: 31px;
+    width: 225px;
+    height: 83px;
+    border-radius: 12px 12px 18px 18px;
+    background: linear-gradient(90deg, #bd668e, #f6bfdc 40%, #e68bb9);
+    box-shadow: inset 0 -10px 0 #b45583, 0 10px 20px #0003;
+}
+
+.cake-base::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #fff0f4;
+    border-radius: 10px;
+}
+
+.cake-top {
+    position: absolute;
+    bottom: 105px;
+    width: 190px;
+    height: 56px;
+    border-radius: 50% 50% 10px 10px;
+    background: linear-gradient(110deg, #ffe7f3, #f5badb, #fff0f5);
+}
+
+.cake-top::after {
+    content: "♥  ✦  ♥";
+    position: absolute;
+    top: 21px;
+    left: 0;
+    width: 100%;
+    color: #b84e80;
+    font-size: 15px;
+    letter-spacing: 10px;
+}
+
+.cake-drip {
+    position: absolute;
+    z-index: 2;
+    bottom: 83px;
+    width: 190px;
+    height: 32px;
+    border-radius: 0 0 12px 12px;
+    background: #ffe8f4;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 88% 50%, 84% 100%, 74% 100%, 70% 50%, 48% 50%, 44% 100%, 33% 100%, 29% 50%, 12% 50%, 8% 90%, 0 90%);
+}
+
+.candle {
+    position: absolute;
+    z-index: 4;
+    bottom: 151px;
+    width: 11px;
+    height: 44px;
+    border-radius: 3px;
+    background: repeating-linear-gradient(135deg, #fff1d2 0 5px, #d39ae9 5px 10px);
+}
+
+.candle:nth-child(5) { left: 108px; }
+.candle:nth-child(6) { left: 140px; }
+.candle:nth-child(7) { left: 172px; }
+
+.flame {
+    position: absolute;
+    left: 1px;
+    top: -23px;
+    width: 10px;
+    height: 19px;
+    border-radius: 80% 20% 60% 40%;
+    background: radial-gradient(ellipse at 50% 65%, #fffbd1 0 20%, #ffdc69 40%, #ff914d 75%);
+    transform: rotate(5deg);
+    transform-origin: bottom center;
+    filter: drop-shadow(0 0 8px #ffc45c);
+    animation: flameDance .65s ease-in-out infinite alternate;
+}
+
+.flame.out {
+    display: none;
+}
+
+.smoke {
+    display: none;
+    position: absolute;
+    left: -3px;
+    top: -32px;
+    color: #d9c8e6;
+    font-size: 18px;
+    animation: smokeRise 1.5s ease-out forwards;
+}
+
+.cake-instruction {
+    color: var(--gold);
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+.blow-btn {
+    margin-top: 18px;
+    background: transparent;
+    border: 1px solid #d9b5f5;
+    color: #f4dfff;
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.blow-btn:hover { background: #ffffff12; }
+
+/* Letter */
+.letter-section {
+    background:
+        radial-gradient(ellipse at 50% 20%, #43234e, transparent 60%),
+        #10091f;
+}
+
+.letter-card {
+    width: min(100%, 570px);
+    padding: clamp(25px, 6vw, 48px);
+    margin-top: 25px;
+    color: #3b263b;
+    background: linear-gradient(140deg, #fff4e4, #f9d9ec 60%, #eadbff);
+    border: 1px solid #ffeac2;
+    border-radius: 5px;
+    box-shadow: 0 20px 65px #0005;
+    position: relative;
+    text-align: left;
+}
+
+.letter-card::before {
+    content: "✦";
+    position: absolute;
+    top: 13px;
+    right: 17px;
+    color: #b88b53;
+    font-size: 24px;
+}
+
+.letter-title {
+    font-size: 35px;
+    color: #6a3b69;
+    text-align: center;
+    margin: 10px 0 25px;
+}
+
+.letter-card p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.75;
+}
+
+.letter-sign {
+    text-align: right;
+    color: #744371;
+    font-weight: 600;
+    margin-top: 25px;
+}
+
+.letter-heart {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.last-note {
+    color: #d9c8e6;
+    font-size: 12px;
+    line-height: 1.9;
+    margin-top: 25px;
+}
+
+/* Final black surprise screen */
+#surprise-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+#surprise-screen.active {
+    display: flex;
+    animation: blackReveal .9s ease both;
+}
+
+#surprise-screen p {
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-top: 20px;
+}
+
+@keyframes princessFloat {
+    0%, 100% { transform: translateY(0) rotateY(-4deg); }
+    50% { transform: translateY(-10px) rotateY(4deg); }
+}
+
+@keyframes starDrift {
+    to { background-position: 190px 180px; }
+}
+
+@keyframes titleShine {
+    to { background-position: 250% center; }
+}
+
+@keyframes twinkle {
+    from { opacity: .3; transform: scale(.8); }
+    to { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes heartRise {
+    0%, 100% { transform: translateY(0); opacity: .5; }
+    50% { transform: translateY(-18px); opacity: 1; }
+}
+
+@keyframes flameDance {
+    from { transform: rotate(-7deg) scale(.92); }
+    to { transform: rotate(7deg) scale(1.08); }
+}
+
+@keyframes smokeRise {
+    to { transform: translateY(-25px); opacity: 0; }
+}
+
+@keyframes blackReveal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    section { padding: 65px 18px; }
+    .princess-stage { transform: scale(.92); margin-top: -5px; margin-bottom: 0; }
+    .hero-title { line-height: 1.1; }
+    .cake-area { transform: scale(.9); margin-top: 15px; margin-bottom: 0; }
+    .letter-card p { font-size: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Princess Animation -->
-    <main class="princess-scene">
+<!-- PART 1: ROYAL BIRTHDAY INTRO -->
+<section class="royal-section" id="home">
 
-        <div class="magic-sparkle sparkle1">✨</div>
-        <div class="magic-sparkle sparkle2">⭐</div>
-        <div class="magic-sparkle sparkle3">💖</div>
-        <div class="magic-sparkle sparkle4">🦋</div>
+    <div class="eyebrow">A little magic, made with love</div>
 
-        <div class="princess">
-            <div class="crown">👑</div>
-            <div class="princess-head">👸🏻</div>
-            <div class="princess-dress">👗</div>
+    <h1 class="hero-title">
+        Happy Birthday<br>Jasmitha
+    </h1>
+
+    <div class="ornament">✧ ── ♡ ── ✧</div>
+
+    <p class="hero-subtitle">
+        Tonight, a little fairy tale comes alive for someone
+        who deserves all the magic in the world.
+    </p>
+
+    <div class="princess-stage" aria-label="Original animated fairy-tale princess">
+        <div class="princess-halo"></div>
+        <span class="floating-heart heart-a">✧</span>
+        <span class="floating-heart heart-b">♡</span>
+        <span class="floating-heart heart-c">✦</span>
+
+        <div class="princess-character">
+            <div class="princess-hair"></div>
+            <div class="princess-side-hair"></div>
+            <div class="princess-side-hair right"></div>
+            <div class="princess-neck"></div>
+            <div class="princess-body"></div>
+            <div class="princess-sleeve"></div>
+            <div class="princess-sleeve right"></div>
+            <div class="princess-collar"></div>
+            <div class="princess-face"></div>
+            <div class="princess-fringe"></div>
+            <div class="princess-crown"></div>
+        </div>
+    </div>
+
+    <div class="eyebrow">Our very own birthday princess</div>
+
+    <button class="primary-btn" onclick="goToCake()">
+        Begin the Fairy Tale <span>✦</span>
+    </button>
+
+    <div class="scroll-note">A SPECIAL DAY · A SPECIAL SOUL</div>
+</section>
+
+
+<!-- PART 2: BIRTHDAY CAKE -->
+<section class="cake-section" id="cake">
+
+    <div class="eyebrow">Make a birthday wish</div>
+    <h2 class="section-title">A Cake Full of Magic</h2>
+
+    <p class="section-copy">
+        Close your eyes, Jasmitha. Think of the wish closest
+        to your heart, then blow out your candles. ✨
+    </p>
+
+    <div class="cake-area" id="cakeArea">
+
+        <div class="cake-plate"></div>
+        <div class="cake-base"></div>
+        <div class="cake-top"></div>
+        <div class="cake-drip"></div>
+
+        <div class="candle" style="left:108px">
+            <div class="flame"></div><div class="smoke">〰</div>
+        </div>
+        <div class="candle" style="left:140px">
+            <div class="flame"></div><div class="smoke">〰</div>
+        </div>
+        <div class="candle" style="left:172px">
+            <div class="flame"></div><div class="smoke">〰</div>
         </div>
 
-        <h1 class="princess-message">
-            A Royal Birthday Surprise for Jasmitha! 💜
-        </h1>
+    </div>
 
-        <p class="subtitle">
-            ✨ Once upon a time, a beautiful princess was born... ✨<br>
-            Today, her magical story shines brighter than ever! 💖
+    <p class="cake-instruction" id="cakeStatus">
+        Three little flames, one beautiful wish.
+    </p>
+
+    <button class="blow-btn" id="blowButton" onclick="blowCandles()">
+        🌬️ Blow Out the Candles
+    </button>
+
+    <button class="blow-btn" id="micButton" onclick="startListening()">
+        🎙️ Blow using your microphone
+    </button>
+
+    <p class="section-copy" id="micStatus" aria-live="polite">
+        The microphone is optional. You can tap the candle button instead.
+    </p>
+
+    <button class="primary-btn" onclick="goToLetter()">
+        Read Your Birthday Letter 💌
+    </button>
+</section>
+
+
+<!-- PART 3: HEARTFELT LETTER -->
+<section class="letter-section" id="letter">
+
+    <div class="eyebrow">A letter from the heart</div>
+    <h2 class="section-title">Just for You, Jasmitha</h2>
+
+    <div class="letter-card">
+        <div class="letter-title">To My Beautiful Princess ♡</div>
+
+        <p>My dearest Jasmitha,</p>
+
+        <p>
+            If I could give you one thing in this world, it would
+            be the ability to see yourself through the eyes of
+            the people who love you. Then you would understand
+            just how precious and wonderful you truly are.
         </p>
 
-        <button class="birthday-button" onclick="openSurprise()">
-            🎁 Open Your Magical Surprise
-        </button>
+        <p>
+            May every new day bring you closer to your dreams.
+            May you always find reasons to smile, courage when
+            life gets difficult, and people who remind you how
+            deeply you are loved.
+        </p>
 
-        <div class="secret-message" id="secretMessage">
-            <h2>💌 To My Dearest Jasmitha 💌</h2>
-            <p>
-                Happy Birthday to our beautiful princess! 👑<br>
-                May your life sparkle with happiness, your heart
-                overflow with love, and your dreams come true.
-                Never stop shining, because you make this world
-                more beautiful just by being you! 💜✨
-            </p>
-            <p>With lots of love, today and always! 💖</p>
-        </div>
+        <p>
+            You deserve a life filled with beautiful memories,
+            unexpected happiness, and a thousand little moments
+            that make your heart feel full.
+        </p>
 
-    </main>
+        <p>
+            No matter how much time passes, I hope you never
+            forget how special you are. Keep shining in your
+            own beautiful way, my birthday princess.
+        </p>
 
-    <script>
-        function openSurprise() {
-            const message = document.getElementById("secretMessage");
-            message.classList.add("show");
+        <p>Happy Birthday, Jasmitha. May your story be magical. ✨</p>
 
-            const button = document.querySelector(".birthday-button");
-            button.textContent = "💖 Your Magic Is Unlocked!";
+        <div class="letter-sign">With all my love, always ♡</div>
+        <span class="letter-heart">💗</span>
+    </div>
 
-            // Magical falling confetti
-            const emojis = ["💖", "✨", "💜", "🌸", "⭐", "🎉", "🦋"];
+    <p class="last-note">
+        And now, Jasmitha...<br>
+        there's just one more thing waiting for you.
+    </p>
 
-            for (let i = 0; i < 70; i++) {
-                const piece = document.createElement("span");
-                piece.className = "confetti";
-                piece.textContent =
-                    emojis[Math.floor(Math.random() * emojis.length)];
+    <button class="primary-btn" onclick="openFinalSurprise()">
+        🎁 Surprise Me
+    </button>
+</section>
 
-                piece.style.left = Math.random() * 100 + "vw";
-                piece.style.fontSize = (14 + Math.random() * 20) + "px";
-                piece.style.animationDuration = (3 + Math.random() * 4) + "s";
-                piece.style.animationDelay = Math.random() * 2 + "s";
 
-                document.body.appendChild(piece);
+<!-- PART 4: BLACK SCREEN FOR YOUR NEXT SURPRISE -->
+<div id="surprise-screen" role="dialog" aria-modal="true"
+     aria-label="Your next surprise">
 
-                setTimeout(() => piece.remove(), 9000);
+    <div style="font-size:35px;color:#fff">✦</div>
+    <p>THE NEXT CHAPTER AWAITS</p>
+
+    <!-- We can add your next surprise here later. -->
+
+</div>
+
+
+<script>
+function goToCake() {
+    document.getElementById("cake").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function goToLetter() {
+    document.getElementById("letter").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+let candlesBlownOut = false;
+
+function blowCandles() {
+    if (candlesBlownOut) return;
+
+    candlesBlownOut = true;
+
+    document.querySelectorAll(".flame").forEach(flame => {
+        flame.classList.add("out");
+    });
+
+    document.querySelectorAll(".smoke").forEach(smoke => {
+        smoke.style.display = "block";
+    });
+
+    document.getElementById("cakeStatus").textContent =
+        "Your wish is on its way to the stars! ✨💖";
+
+    document.getElementById("blowButton").textContent =
+        "✨ Wish Made!";
+
+    document.getElementById("micButton").style.display = "none";
+
+    launchConfetti();
+}
+
+function launchConfetti() {
+    const symbols = ["✨", "💗", "⭐", "🌸", "💜", "✦"];
+
+    for (let i = 0; i < 45; i++) {
+        const piece = document.createElement("span");
+        piece.textContent = symbols[
+            Math.floor(Math.random() * symbols.length)
+        ];
+
+        piece.style.position = "fixed";
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.top = "-30px";
+        piece.style.zIndex = "999";
+        piece.style.pointerEvents = "none";
+        piece.style.fontSize = (14 + Math.random() * 15) + "px";
+        piece.style.animation = "confettiFall " +
+            (3 + Math.random() * 3) + "s linear forwards";
+
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 6500);
+    }
+}
+
+/* Add a falling animation for the celebration */
+const confettiStyle = document.createElement("style");
+confettiStyle.textContent = `
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(600deg);
+        opacity: 0;
+    }
+}`;
+document.head.appendChild(confettiStyle);
+
+
+/* Optional microphone blow detection.
+   Requires HTTPS and permission from the visitor. */
+let audioStream = null;
+
+async function startListening() {
+    const status = document.getElementById("micStatus");
+    const button = document.getElementById("micButton");
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        status.textContent =
+            "Microphone isn't available here. Please use the candle button.";
+        return;
+    }
+
+    try {
+        button.disabled = true;
+        status.textContent = "Allow microphone access, then gently blow!";
+
+        audioStream = await navigator.mediaDevices.getUserMedia({
+            audio: true
+        });
+
+        const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+            status.textContent =
+                "Microphone detection isn't supported. Use the candle button.";
+            audioStream.getTracks().forEach(track => track.stop());
+            button.disabled = false;
+            return;
+        }
+
+        const context = new AudioContextClass();
+        await context.resume();
+
+        const source = context.createMediaStreamSource(audioStream);
+        const analyser = context.createAnalyser();
+        analyser.fftSize = 1024;
+        source.connect(analyser);
+
+        const samples = new Uint8Array(analyser.fftSize);
+        let loudFrames = 0;
+        let checks = 0;
+
+        status.textContent = "Listening... blow toward your microphone! 🌬️";
+
+        function detectBlow() {
+            if (candlesBlownOut) {
+                audioStream.getTracks().forEach(track => track.stop());
+                context.close();
+                return;
             }
 
-            button.disabled = true;
+            analyser.getByteTimeDomainData(samples);
+
+            let sum = 0;
+            for (let i = 0; i < samples.length; i++) {
+                const value = (samples[i] - 128) / 128;
+                sum += value * value;
+            }
+
+            const volume = Math.sqrt(sum / samples.length);
+            if (volume > 0.20) {
+                loudFrames++;
+            } else {
+                loudFrames = Math.max(0, loudFrames - 1);
+            }
+
+            checks++;
+
+            if (loudFrames >= 5) {
+                blowCandles();
+                audioStream.getTracks().forEach(track => track.stop());
+                context.close();
+                return;
+            }
+
+            if (checks > 900) {
+                status.textContent =
+                    "Try again, or tap the candle button to put them out.";
+                audioStream.getTracks().forEach(track => track.stop());
+                context.close();
+                button.disabled = false;
+                return;
+            }
+
+            requestAnimationFrame(detectBlow);
         }
-    </script>
+
+        detectBlow();
+
+    } catch (error) {
+        status.textContent =
+            "Microphone access wasn't available. Tap the candle button instead.";
+        button.disabled = false;
+
+        if (audioStream) {
+            audioStream.getTracks().forEach(track => track.stop());
+        }
+    }
+}
+
+
+/* The last button opens a completely black screen. */
+function openFinalSurprise() {
+    const screen = document.getElementById("surprise-screen");
+    screen.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+</script>
 
 </body>
 </html>
