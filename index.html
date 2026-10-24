@@ -1,17 +1,311 @@
 
-<!-- Princess Animation -->
-<div class="princess-scene">
-    <div class="magic-sparkle sparkle1">✨</div>
-    <div class="magic-sparkle sparkle2">⭐</div>
-    <div class="magic-sparkle sparkle3">💖</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmitha's Royal Birthday 👑</title>
 
-    <div class="princess">
-        <div class="crown">👑</div>
-        <div class="princess-head">👸🏻</div>
-        <div class="princess-dress">👗</div>
-    </div>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    <h2 class="princess-message">
-        A Royal Birthday Surprise for Jasmitha! 💜
-    </h2>
-</div>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: linear-gradient(135deg, #170b2e, #51266e, #9b4b91, #261044);
+            color: white;
+        }
+
+        .princess-scene {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 15px;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .princess-scene::before {
+            content: "✦      ·       ✧       ·      ✦";
+            position: absolute;
+            top: 8%;
+            color: #ffe5ff;
+            font-size: 25px;
+            letter-spacing: 10px;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .princess {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 25px;
+            animation: princessFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px #ed9aff);
+        }
+
+        .crown {
+            font-size: 55px;
+            line-height: 1;
+            animation: crownGlow 1.5s infinite alternate;
+        }
+
+        .princess-head {
+            font-size: clamp(90px, 18vw, 130px);
+            line-height: 1.2;
+            animation: headMove 4s ease-in-out infinite;
+        }
+
+        .princess-dress {
+            font-size: clamp(65px, 14vw, 90px);
+            line-height: 1.1;
+        }
+
+        .princess-message {
+            max-width: 700px;
+            margin: 35px 0 10px;
+            color: #ffe3ff;
+            font-size: clamp(25px, 6vw, 42px);
+            text-shadow: 0 0 12px #ed8dff, 0 0 30px #b34fff;
+            animation: messageGlow 2s infinite alternate;
+        }
+
+        .subtitle {
+            font-size: clamp(15px, 3.5vw, 19px);
+            color: #ffe9f8;
+            line-height: 1.8;
+        }
+
+        .magic-sparkle {
+            position: absolute;
+            font-size: 30px;
+            animation: sparkleFloat 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .sparkle1 {
+            top: 20%;
+            left: 15%;
+        }
+
+        .sparkle2 {
+            top: 30%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .sparkle3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 1.5s;
+        }
+
+        .sparkle4 {
+            bottom: 25%;
+            right: 20%;
+            animation-delay: 0.5s;
+        }
+
+        .birthday-button {
+            margin-top: 25px;
+            padding: 14px 28px;
+            border: 1px solid #ffe0ff;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #e78be9, #a44bd0);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px #c66cff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .birthday-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 35px #ffb6ff;
+        }
+
+        .secret-message {
+            display: none;
+            max-width: 500px;
+            margin-top: 25px;
+            padding: 22px;
+            border: 1px solid #edb5ff;
+            border-radius: 20px;
+            background: rgba(35, 12, 57, 0.85);
+            color: #fff0ff;
+            line-height: 1.8;
+            box-shadow: 0 0 25px #c66cff;
+            animation: revealMessage 1s ease;
+        }
+
+        .secret-message.show {
+            display: block;
+        }
+
+        .confetti {
+            position: fixed;
+            top: -20px;
+            z-index: 10;
+            pointer-events: none;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes princessFloat {
+            0%, 100% {
+                transform: translateY(0) rotateY(-8deg);
+            }
+            50% {
+                transform: translateY(-18px) rotateY(8deg);
+            }
+        }
+
+        @keyframes crownGlow {
+            from {
+                filter: drop-shadow(0 0 4px gold);
+                transform: translateY(0);
+            }
+            to {
+                filter: drop-shadow(0 0 20px #ffe66d);
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes headMove {
+            0%, 100% { transform: rotate(-4deg); }
+            50% { transform: rotate(4deg); }
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% {
+                transform: translateY(0) scale(.8) rotate(0);
+                opacity: .5;
+            }
+            50% {
+                transform: translateY(-25px) scale(1.3) rotate(20deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes messageGlow {
+            from { text-shadow: 0 0 8px #d98aff; }
+            to { text-shadow: 0 0 25px #ff9de2, 0 0 40px #bb68ff; }
+        }
+
+        @keyframes twinkle {
+            from { opacity: .4; }
+            to { opacity: 1; }
+        }
+
+        @keyframes revealMessage {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Princess Animation -->
+    <main class="princess-scene">
+
+        <div class="magic-sparkle sparkle1">✨</div>
+        <div class="magic-sparkle sparkle2">⭐</div>
+        <div class="magic-sparkle sparkle3">💖</div>
+        <div class="magic-sparkle sparkle4">🦋</div>
+
+        <div class="princess">
+            <div class="crown">👑</div>
+            <div class="princess-head">👸🏻</div>
+            <div class="princess-dress">👗</div>
+        </div>
+
+        <h1 class="princess-message">
+            A Royal Birthday Surprise for Jasmitha! 💜
+        </h1>
+
+        <p class="subtitle">
+            ✨ Once upon a time, a beautiful princess was born... ✨<br>
+            Today, her magical story shines brighter than ever! 💖
+        </p>
+
+        <button class="birthday-button" onclick="openSurprise()">
+            🎁 Open Your Magical Surprise
+        </button>
+
+        <div class="secret-message" id="secretMessage">
+            <h2>💌 To My Dearest Jasmitha 💌</h2>
+            <p>
+                Happy Birthday to our beautiful princess! 👑<br>
+                May your life sparkle with happiness, your heart
+                overflow with love, and your dreams come true.
+                Never stop shining, because you make this world
+                more beautiful just by being you! 💜✨
+            </p>
+            <p>With lots of love, today and always! 💖</p>
+        </div>
+
+    </main>
+
+    <script>
+        function openSurprise() {
+            const message = document.getElementById("secretMessage");
+            message.classList.add("show");
+
+            const button = document.querySelector(".birthday-button");
+            button.textContent = "💖 Your Magic Is Unlocked!";
+
+            // Magical falling confetti
+            const emojis = ["💖", "✨", "💜", "🌸", "⭐", "🎉", "🦋"];
+
+            for (let i = 0; i < 70; i++) {
+                const piece = document.createElement("span");
+                piece.className = "confetti";
+                piece.textContent =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                piece.style.left = Math.random() * 100 + "vw";
+                piece.style.fontSize = (14 + Math.random() * 20) + "px";
+                piece.style.animationDuration = (3 + Math.random() * 4) + "s";
+                piece.style.animationDelay = Math.random() * 2 + "s";
+
+                document.body.appendChild(piece);
+
+                setTimeout(() => piece.remove(), 9000);
+            }
+
+            button.disabled = true;
+        }
+    </script>
+
+</body>
+</html>
