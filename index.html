@@ -4,17 +4,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#170d2b">
+<meta name="theme-color" content="#100b18">
 <title>Jasmitha | A Royal Birthday</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<style>
 :root {
-    --pink: #ffc6e8;
-    --purple: #c8a3ff;
-    --gold: #f8d991;
-    --night: #10091f;
+    --night: #100b18;
+    --plum: #25142f;
+    --lavender: #c7a8e5;
+    --gold: #e8d0a0;
+    --ivory: #fff6eb;
+    --rose: #d9a9c9;
 }
 
 * { box-sizing: border-box; }
@@ -23,9 +27,11 @@ html { scroll-behavior: smooth; }
 
 body {
     margin: 0;
-    color: #fff6ff;
-    font-family: 'Poppins', sans-serif;
     background: var(--night);
+    color: var(--ivory);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
 }
 
 button { font: inherit; }
@@ -33,7 +39,7 @@ button { font: inherit; }
 section {
     position: relative;
     min-height: 100vh;
-    padding: 85px 20px;
+    padding: 85px 22px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,9 +51,9 @@ section {
 
 .royal-section {
     background:
-        radial-gradient(ellipse at 50% 30%, #59306e 0%, transparent 48%),
-        radial-gradient(ellipse at 10% 90%, #302051 0%, transparent 45%),
-        linear-gradient(145deg, #10091f, #241233 55%, #10091f);
+        radial-gradient(ellipse at 50% 35%, #593a68 0%, transparent 42%),
+        radial-gradient(ellipse at 15% 90%, #35213e 0%, transparent 40%),
+        linear-gradient(145deg, #100b18, #211329 55%, #100b18);
 }
 
 .royal-section::before {
@@ -55,67 +61,63 @@ section {
     position: absolute;
     inset: 0;
     z-index: -1;
-    opacity: .5;
+    opacity: .55;
     background-image:
-        radial-gradient(2px 2px at 10% 20%, white 90%, transparent),
-        radial-gradient(2px 2px at 80% 30%, #ffe7ae 90%, transparent),
-        radial-gradient(2px 2px at 35% 75%, white 90%, transparent),
-        radial-gradient(3px 3px at 70% 85%, #ffc6e8 90%, transparent),
-        radial-gradient(2px 2px at 55% 12%, white 90%, transparent);
-    background-size: 190px 180px;
-    animation: starDrift 18s linear infinite;
+        radial-gradient(1px 1px at 15% 20%, #fff 99%, transparent),
+        radial-gradient(2px 2px at 75% 35%, var(--gold) 99%, transparent),
+        radial-gradient(1px 1px at 45% 75%, #fff 99%, transparent),
+        radial-gradient(2px 2px at 85% 80%, var(--rose) 99%, transparent);
+    background-size: 180px 170px;
+    animation: starDrift 25s linear infinite;
 }
 
 .eyebrow {
     color: var(--gold);
     letter-spacing: 5px;
     text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 500;
-}
-
-h1, h2, .letter-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
+    font-size: 10px;
+    font-weight: 400;
 }
 
 .hero-title {
-    font-size: clamp(43px, 9vw, 92px);
-    line-height: 1;
-    margin: 25px 0 15px;
-    background: linear-gradient(110deg, #fff5d5, #ffc4ea, #e3c7ff, #fff5d5);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(38px, 8vw, 80px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: 2px;
+    margin: 25px 0 12px;
+    background: linear-gradient(110deg, #fff6df, #f0c9e8, #d6c0ff, #fff1d1);
     background-size: 250% auto;
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
-    animation: titleShine 6s linear infinite;
-    text-shadow: 0 0 45px #d78bff25;
+    animation: titleShine 7s linear infinite;
 }
 
 .hero-subtitle {
-    color: #e9d9f0;
-    max-width: 520px;
-    line-height: 1.9;
-    font-size: 14px;
-    font-weight: 300;
+    color: #e3d4e8;
+    max-width: 480px;
+    line-height: 2;
+    font-size: 13px;
+    letter-spacing: .4px;
 }
 
 .ornament {
     color: var(--gold);
     letter-spacing: 10px;
-    margin: 18px 0;
+    margin: 20px 0;
 }
 
-/* Original princess character made entirely with CSS */
+/* ORIGINAL CSS-CRAFTED PRINCESS */
+
 .princess-stage {
     position: relative;
     width: 270px;
     height: 300px;
-    margin: 5px auto 15px;
+    margin: 10px auto 15px;
     display: grid;
     place-items: center;
     animation: princessFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 15px 28px #d68aff20);
 }
 
 .princess-halo {
@@ -294,9 +296,7 @@ h1, h2, .letter-title {
     background: #613526;
 }
 
-.princess-side-hair.right {
-    left: 111px;
-}
+.princess-side-hair.right { left: 111px; }
 
 .floating-heart {
     position: absolute;
@@ -340,7 +340,8 @@ h1, h2, .letter-title {
     letter-spacing: 2px;
 }
 
-/* Birthday cake */
+/* CAKE */
+
 .cake-section {
     background:
         radial-gradient(ellipse at center, #3c1d50, transparent 65%),
@@ -348,7 +349,9 @@ h1, h2, .letter-title {
 }
 
 .section-title {
-    font-size: clamp(36px, 7vw, 58px);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 400;
     color: #ffe4f5;
     margin: 16px 0;
 }
@@ -442,10 +445,6 @@ h1, h2, .letter-title {
     background: repeating-linear-gradient(135deg, #fff1d2 0 5px, #d39ae9 5px 10px);
 }
 
-.candle:nth-child(5) { left: 108px; }
-.candle:nth-child(6) { left: 140px; }
-.candle:nth-child(7) { left: 172px; }
-
 .flame {
     position: absolute;
     left: 1px;
@@ -460,9 +459,7 @@ h1, h2, .letter-title {
     animation: flameDance .65s ease-in-out infinite alternate;
 }
 
-.flame.out {
-    display: none;
-}
+.flame.out { display: none; }
 
 .smoke {
     display: none;
@@ -494,7 +491,8 @@ h1, h2, .letter-title {
 
 .blow-btn:hover { background: #ffffff12; }
 
-/* Letter */
+/* LETTER */
+
 .letter-section {
     background:
         radial-gradient(ellipse at 50% 20%, #43234e, transparent 60%),
@@ -524,6 +522,7 @@ h1, h2, .letter-title {
 }
 
 .letter-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 35px;
     color: #6a3b69;
     text-align: center;
@@ -557,7 +556,8 @@ h1, h2, .letter-title {
     margin-top: 25px;
 }
 
-/* Final black surprise screen */
+/* BLACK SURPRISE SCREEN */
+
 #surprise-screen {
     position: fixed;
     inset: 0;
@@ -583,6 +583,8 @@ h1, h2, .letter-title {
     letter-spacing: 5px;
     margin-top: 20px;
 }
+
+/* ANIMATIONS */
 
 @keyframes princessFloat {
     0%, 100% { transform: translateY(0) rotateY(-4deg); }
@@ -623,9 +625,17 @@ h1, h2, .letter-title {
 
 @media (max-width: 480px) {
     section { padding: 65px 18px; }
-    .princess-stage { transform: scale(.92); margin-top: -5px; margin-bottom: 0; }
+    .princess-stage {
+        transform: scale(.92);
+        margin-top: -5px;
+        margin-bottom: 0;
+    }
     .hero-title { line-height: 1.1; }
-    .cake-area { transform: scale(.9); margin-top: 15px; margin-bottom: 0; }
+    .cake-area {
+        transform: scale(.9);
+        margin-top: 15px;
+        margin-bottom: 0;
+    }
     .letter-card p { font-size: 19px; }
 }
 
