@@ -1002,3 +1002,469 @@ function openFinalSurprise() {
 
 </body>
 </html>
+
+<style>
+/* SECRET SCREEN */
+#birthdaySecret {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999990;
+  background:#000;
+  color:white;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  font-family:Arial;
+  padding:20px;
+}
+
+#birthdaySecret input {
+  padding:14px;
+  margin:12px;
+  width:230px;
+  border:1px solid #777;
+  border-radius:12px;
+  background:#181818;
+  color:white;
+}
+
+#birthdaySecret button {
+  padding:13px 28px;
+  border:0;
+  border-radius:25px;
+  background:#ff4081;
+  color:white;
+  font-size:17px;
+}
+
+/* CINEMATIC CELEBRATION */
+#birthday4D {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999991;
+  overflow:hidden;
+  background:radial-gradient(circle,#37134d,#090013 75%);
+  color:white;
+  font-family:Arial,sans-serif;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  perspective:1200px;
+}
+
+#birthday4D h1 {
+  text-align:center;
+  z-index:5;
+  text-shadow:0 0 20px #ff69b4;
+  animation:birthdayGlow 2s infinite alternate;
+}
+
+@keyframes birthdayGlow {
+  to {text-shadow:0 0 40px #ff00bb,0 0 70px #7136ff;}
+}
+
+/* 4D DEPTH PHOTO */
+#birthdayPhoto {
+  width:min(78vw,370px);
+  aspect-ratio:3/4;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:cinematicMove 6s ease-in-out infinite;
+  z-index:4;
+}
+
+#birthdayPhoto img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:22px;
+  box-shadow:0 0 30px #ff69b4,0 0 80px #7136ff;
+}
+
+#birthdayPhoto:before {
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border:2px solid #ff80ab;
+  border-radius:28px;
+  transform:translateZ(-35px);
+  box-shadow:0 0 35px #ff1493;
+}
+
+#birthdayPhoto:after {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  background:linear-gradient(
+    110deg,transparent 25%,
+    rgba(255,255,255,.4),transparent 65%
+  );
+  transform:translateZ(15px);
+  animation:photoShine 4s infinite;
+}
+
+@keyframes cinematicMove {
+  0%,100% {
+    transform:translateY(0) rotateY(-8deg) rotateX(3deg) scale(1);
+  }
+  50% {
+    transform:translateY(-18px) rotateY(8deg) rotateX(-3deg) scale(1.04);
+  }
+}
+
+@keyframes photoShine {
+  0% {background-position:-200%}
+  100% {background-position:200%}
+}
+
+/* CONFETTI */
+.bdayPaper {
+  position:absolute;
+  top:-25px;
+  width:10px;
+  height:16px;
+  z-index:6;
+  pointer-events:none;
+  animation:paperFall linear forwards;
+}
+
+@keyframes paperFall {
+  to {
+    transform:translate(var(--wind),110vh) rotate(1000deg);
+    opacity:.8;
+  }
+}
+
+/* FIREWORKS */
+.bdayFirework {
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:
+    0 -35px #ff4081,
+    25px -25px #ffea00,
+    35px 0 #40c4ff,
+    25px 25px #69f0ae,
+    0 35px #ff9100,
+    -25px 25px #ea80fc,
+    -35px 0 #ffff00,
+    -25px -25px #40c4ff;
+  animation:fireworkBurst 1.3s ease-out forwards;
+  z-index:2;
+}
+
+@keyframes fireworkBurst {
+  to {transform:scale(3);opacity:0;}
+}
+
+#birthdayMusic {
+  position:absolute;
+  bottom:22px;
+  z-index:10;
+  padding:12px 22px;
+  border:0;
+  border-radius:25px;
+  background:#ff4081;
+  color:white;
+}
+</style>
+
+
+<!-- SECRET DOB AND EMOJI -->
+
+<div id="birthdaySecret">
+  <h1>✨ A Little Secret ✨</h1>
+  <p>Enter the correct birthday date ❤️</p>
+
+  <input type="date" id="birthdayDOB">
+
+  <p>Enter your secret emoji 🔐</p>
+  <input type="text" id="birthdayEmoji"
+         placeholder="Secret emoji">
+
+  <button onclick="startBirthdaySurprise()">
+    Unlock Surprise ❤️
+  </button>
+
+  <p id="birthdayError" style="color:#ff4081"></p>
+</div>
+
+
+<!-- 4D CELEBRATION -->
+
+<div id="birthday4D">
+
+  <h1>🎉 THE WAIT IS OVER 🎉</h1>
+
+  <div id="birthdayPhoto">
+    <img src="surprise-photo.jpg" alt="Birthday surprise">
+  </div>
+
+  <h1>HAPPY BIRTHDAY ❤️</h1>
+  <p>You are truly special! ✨</p>
+
+  <button id="birthdayMusic" onclick="birthdayToggleMusic()">
+    🔊 Pause Music
+  </button>
+
+</div>
+
+
+<script>
+
+/* SET THE CORRECT DETAILS HERE */
+
+const birthdayCorrectDate = "YYYY-MM-DD";
+const birthdaySecretEmoji = "🌙";
+
+
+/* OPEN SECRET SCREEN */
+
+function openBirthdaySecret() {
+  document.getElementById("birthdaySecret").style.display="flex";
+}
+
+
+/* CONNECT YOUR OLD SURPRISE ME BUTTON */
+
+function startBirthdaySurprise() {
+
+  const date = document.getElementById("birthdayDOB").value;
+  const emoji = document.getElementById("birthdayEmoji").value.trim();
+
+  if(date === birthdayCorrectDate &&
+     emoji === birthdaySecretEmoji) {
+
+    document.getElementById("birthdaySecret").style.display="none";
+    document.getElementById("birthday4D").style.display="flex";
+
+    launchBirthdayParty();
+
+  } else {
+
+    document.getElementById("birthdayError").innerText =
+      "Incorrect date or emoji! Try again ❤️";
+
+  }
+}
+
+
+/* ORIGINAL CELEBRATION MUSIC */
+
+let birthdayAudio;
+let birthdayMusicTimer;
+let birthdayPlaying=false;
+let birthdayNote=0;
+
+const birthdayMelody=[
+  523,659,784,659,587,698,
+  880,784,659,784,1047,784
+];
+
+function birthdayPlayNote(frequency) {
+
+  const oscillator=birthdayAudio.createOscillator();
+  const volume=birthdayAudio.createGain();
+
+  oscillator.type="sine";
+  oscillator.frequency.value=frequency;
+
+  volume.gain.setValueAtTime(.0001,birthdayAudio.currentTime);
+  volume.gain.exponentialRampToValueAtTime(
+    .10,birthdayAudio.currentTime+.03
+  );
+  volume.gain.exponentialRampToValueAtTime(
+    .0001,birthdayAudio.currentTime+.35
+  );
+
+  oscillator.connect(volume);
+  volume.connect(birthdayAudio.destination);
+
+  oscillator.start();
+  oscillator.stop(birthdayAudio.currentTime+.36);
+}
+
+function birthdayStartMusic() {
+
+  birthdayAudio=birthdayAudio ||
+    new (window.AudioContext || window.webkitAudioContext)();
+
+  birthdayAudio.resume();
+
+  birthdayPlaying=true;
+
+  clearInterval(birthdayMusicTimer);
+
+  birthdayMusicTimer=setInterval(()=>{
+
+    if(!birthdayPlaying)return;
+
+    birthdayPlayNote(
+      birthdayMelody[birthdayNote % birthdayMelody.length]
+    );
+
+    birthdayNote++;
+
+  },400);
+
+  document.getElementById("birthdayMusic").innerText="🔊 Pause Music";
+}
+
+function birthdayToggleMusic() {
+
+  if(birthdayPlaying) {
+
+    birthdayPlaying=false;
+    clearInterval(birthdayMusicTimer);
+
+    document.getElementById("birthdayMusic").innerText="🎵 Play Music";
+
+  } else {
+
+    birthdayStartMusic();
+
+  }
+}
+
+
+/* CRACKER-STYLE SOUND EFFECT */
+
+function birthdayCrackerSound() {
+
+  const duration=.35;
+  const length=birthdayAudio.sampleRate*duration;
+
+  const buffer=birthdayAudio.createBuffer(
+    1,length,birthdayAudio.sampleRate
+  );
+
+  const data=buffer.getChannelData(0);
+
+  for(let i=0;i<length;i++) {
+    data[i]=(Math.random()*2-1)*Math.pow(1-i/length,3);
+  }
+
+  const source=birthdayAudio.createBufferSource();
+  const gain=birthdayAudio.createGain();
+
+  source.buffer=buffer;
+  gain.gain.value=.12;
+
+  source.connect(gain);
+  gain.connect(birthdayAudio.destination);
+
+  source.start();
+}
+
+
+/* COLOURFUL FALLING PAPER */
+
+let confettiTimer;
+
+function birthdayConfetti() {
+
+  const scene=document.getElementById("birthday4D");
+
+  const colours=[
+    "#ff1744","#ffea00","#00e5ff",
+    "#76ff03","#e040fb","#ff9100",
+    "#ffffff","#ff80ab"
+  ];
+
+  confettiTimer=setInterval(()=>{
+
+    for(let i=0;i<9;i++) {
+
+      const paper=document.createElement("div");
+
+      paper.className="bdayPaper";
+
+      paper.style.left=Math.random()*100+"vw";
+
+      paper.style.background=
+        colours[Math.floor(Math.random()*colours.length)];
+
+      paper.style.setProperty(
+        "--wind",(Math.random()*180-90)+"px"
+      );
+
+      paper.style.animationDuration=
+        (3+Math.random()*4)+"s";
+
+      scene.appendChild(paper);
+
+      setTimeout(()=>paper.remove(),7500);
+    }
+
+  },200);
+}
+
+
+/* FIREWORKS */
+
+function birthdayFireworks() {
+
+  const scene=document.getElementById("birthday4D");
+
+  setInterval(()=>{
+
+    const firework=document.createElement("div");
+
+    firework.className="bdayFirework";
+
+    firework.style.left=(10+Math.random()*80)+"%";
+    firework.style.top=(10+Math.random()*65)+"%";
+
+    scene.appendChild(firework);
+
+    birthdayCrackerSound();
+
+    setTimeout(()=>firework.remove(),1400);
+
+  },1500);
+}
+
+
+/* START CELEBRATION */
+
+function launchBirthdayParty() {
+
+  birthdayStartMusic();
+  birthdayConfetti();
+  birthdayFireworks();
+
+}
+
+
+/* MOBILE TOUCH DEPTH EFFECT */
+
+const birthdayCard=document.getElementById("birthdayPhoto");
+
+birthdayCard.addEventListener("pointermove",function(event) {
+
+  const rect=birthdayCard.getBoundingClientRect();
+
+  const x=(event.clientX-rect.left)/rect.width-.5;
+  const y=(event.clientY-rect.top)/rect.height-.5;
+
+  birthdayCard.style.animation="none";
+
+  birthdayCard.style.transform=
+    `rotateY(${x*22}deg) rotateX(${-y*22}deg) scale(1.04)`;
+
+});
+
+birthdayCard.addEventListener("pointerleave",function() {
+
+  birthdayCard.style.animation=
+    "cinematicMove 6s ease-in-out infinite";
+
+});
+
+</script>
