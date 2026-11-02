@@ -1467,5 +1467,228 @@ birthdayCard.addEventListener("pointerleave",function() {
 });
 
 </script>
+    
+<!-- GLOWING GROWING FLOWER -->
+<div id="flowerScene">
+  <canvas id="flowerCanvas"></canvas>
+  <div class="flowerMessage">A little flower, grown with love 🌸</div>
+</div>
+
+<style>
+#flowerScene {
+  width: 100%;
+  height: 480px;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+#flowerCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.flowerMessage {
+  position: absolute;
+  bottom: 22px;
+  width: 100%;
+  text-align: center;
+  color: #ffd6f5;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  text-shadow: 0 0 12px #ff66dd;
+}
+</style>
+
+<script>
+(() => {
+  const canvas = document.getElementById("flowerCanvas");
+  const ctx = canvas.getContext("2d");
+  const scene = document.getElementById("flowerScene");
+
+  let width, height;
+  let start = performance.now();
+
+  function resize() {
+    const rect = scene.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = rect.width;
+    height = rect.height;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function ease(t) {
+    t = Math.max(0, Math.min(1, t));
+    return t * t * (3 - 2 * t);
+  }
+
+  function drawFlower(time) {
+    ctx.clearRect(0, 0, width, height);
+
+    const cx = width / 2;
+    const base = height * 0.88;
+    const flowerY = height * 0.29;
+
+    const grow = ease(time / 3);
+    const bloom = ease((time - 3) / 3);
+
+    // Glowing ground
+    const ground = ctx.createRadialGradient(
+      cx, base, 1, cx, base, 100
+    );
+    ground.addColorStop(0, "rgba(40,255,130,0.18)");
+    ground.addColorStop(1, "rgba(0,0,0,0)");
+
+    ctx.fillStyle = ground;
+    ctx.fillRect(cx - 110, base - 30, 220, 70);
+
+    // Stem
+    if (grow > 0) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(cx, base);
+      ctx.quadraticCurveTo(
+        cx - 12 * grow,
+        base - 100 * grow,
+        cx,
+        base - (base - flowerY) * grow
+      );
+
+      ctx.strokeStyle = "#54ff91";
+      ctx.lineWidth = 5;
+      ctx.shadowColor = "#00ff66";
+      ctx.shadowBlur = 20;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Leaves
+    if (grow > 0.45) {
+      const leafGrow = ease((grow - 0.45) / 0.4);
+
+      function leaf(x, y, angle) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.scale(leafGrow, leafGrow);
+
+        ctx.shadowColor = "#00ff66";
+        ctx.shadowBlur = 18;
+        ctx.fillStyle = "#20df72";
+
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 35, 13, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "#b4ffbe";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(-25, 0);
+        ctx.lineTo(25, 0);
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      leaf(cx - 5, base - 90 * grow, -0.5);
+      leaf(cx + 5, base - 155 * grow, 0.5);
+    }
+
+    // Flower petals
+    if (grow > 0.8) {
+      const opening = bloom;
+      const petalCount = 10;
+      const pulse = 1 + Math.sin(time * 2) * 0.035;
+
+      ctx.save();
+      ctx.translate(cx, base - (base - flowerY) * grow);
+      ctx.scale(pulse, pulse);
+
+      for (let i = 0; i < petalCount; i++) {
+        const angle = (Math.PI * 2 * i) / petalCount;
+        const length = 39 * opening;
+        const spread = 0.3 + opening * 0.7;
+
+        ctx.save();
+        ctx.rotate(angle);
+
+        ctx.shadowColor = "#ff42d0";
+        ctx.shadowBlur = 25;
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, -length);
+        gradient.addColorStop(0, "#ff4fca");
+        gradient.addColorStop(0.6, "#ff9be9");
+        gradient.addColorStop(1, "#ffffff");
+
+        ctx.fillStyle = gradient;
+
+        ctx.beginPath();
+        ctx.ellipse(
+          0, -length * 0.48,
+          12 * opening,
+          length * spread,
+          0, 0, Math.PI * 2
+        );
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      // Glowing golden center
+      if (opening > 0) {
+        ctx.shadowColor = "#fff16b";
+        ctx.shadowBlur = 35;
+        ctx.fillStyle = "#ffe66d";
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 11 * opening, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "#fff9c4";
+
+        ctx.beginPath();
+        ctx.arc(-3, -3, 3 * opening, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    // Floating magical sparkles
+    for (let i = 0; i < 24; i++) {
+      const x = cx + Math.sin(time * 0.8 + i * 2.4) * (35 + i * 3);
+      const y = base - 40 - ((time * 25 + i * 31) % 300);
+      const alpha = 0.25 + Math.abs(Math.sin(time * 2 + i));
+
+      ctx.fillStyle = `rgba(255,220,255,${alpha})`;
+      ctx.shadowColor = "#ff66dd";
+      ctx.shadowBlur = 12;
+
+      ctx.beginPath();
+      ctx.arc(x, y, 1.5 + (i % 3), 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(() => {
+      drawFlower((performance.now() - start) / 1000);
+    });
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+  drawFlower(0);
+})();
+</script>
+    
 </body>
 </html>
