@@ -1,174 +1,43 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#100b18">
-<title>Jasmitha | A Royal Birthday</title>
-<style>
-:root{color-scheme:dark;--bg:#100b18;--card:#1c1428;--ink:#f6eefc;--soft:#c9b8dc;--gold:#f2c879;--pink:#ff7eb6;--line:#3a2b52;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#2a1840,var(--bg) 60%);color:var(--ink);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
-.page{display:none;min-height:100vh;padding:48px 20px;max-width:640px;margin:auto;text-align:center;flex-direction:column;align-items:center;justify-content:center;gap:16px;animation:in .7s ease}
-.page.on{display:flex}
-@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-h1,h2{font-weight:400;margin:0;color:var(--gold);line-height:1.15}
-h1{font-size:clamp(2.2rem,9vw,3.6rem)}h2{font-size:clamp(1.6rem,6vw,2.3rem)}
-.tag{letter-spacing:.2em;font-size:.75rem;text-transform:uppercase;color:var(--pink)}
-p{color:var(--soft);line-height:1.7;margin:0}
-.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;font:inherit;color:#2a1305;background:linear-gradient(135deg,#ffd98f,#ff9fc8);padding:14px 28px;border-radius:999px;font-size:1.05rem;box-shadow:0 6px 24px #ff7eb655;transition:transform .2s}
-.btn:hover{transform:scale(1.05)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left;width:100%}
-.letter p{color:var(--ink);margin-bottom:12px}
-.cake{position:relative;width:200px;height:190px;margin:30px auto 0}
-.layer{position:absolute;left:0;right:0;border-radius:14px}
-.l1{bottom:0;height:70px;background:linear-gradient(#ff9fc8,#e0629a)}
-.l2{bottom:70px;left:25px;right:25px;height:60px;background:linear-gradient(#ffe4a8,#f2c879)}
-.candle{position:absolute;bottom:130px;width:10px;height:42px;background:linear-gradient(#fff,#ffd0e5);border-radius:4px}
-.flame{position:absolute;top:-24px;left:-3px;width:16px;height:24px;background:radial-gradient(#fff6c8,#ffb703 60%,transparent 70%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:fl .3s infinite alternate;transition:opacity .5s}
-.out .flame{opacity:0;animation:none}
-@keyframes fl{to{transform:scale(1.1,.9) rotate(4deg)}}
-.slots{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
-.slot{position:relative;aspect-ratio:1;border:2px dashed var(--line);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--soft);background:#ffffff08;font-size:.9rem;gap:6px}
-.slot:hover{border-color:var(--pink)}
-.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.slot b{font-size:2rem;color:var(--pink);font-weight:400}
-.slot.big{aspect-ratio:4/5;max-width:340px}
-input{font:inherit;background:#ffffff10;border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px;width:100%;text-align:center;font-size:1.1rem}
-.err{color:#ff9aa8;min-height:1.4em}
-.heart{position:fixed;bottom:-30px;pointer-events:none;animation:up linear forwards;z-index:9}
-@keyframes up{to{transform:translateY(-110vh) rotate(40deg);opacity:0}}
-.steps{font-size:.8rem;color:var(--soft);opacity:.7}
-</style>
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<section class="page" id="home" data-p="home">
-  <div class="tag">A little magic, made with love</div>
-  <h1>Happy Birthday Jasmitha</h1>
-  <p>✧ ── ♡ ── ✧</p>
-  <p>Tonight, a little fairy tale comes alive for someone who deserves all the magic in the world.</p>
-  <p>Our very own birthday princess</p>
-  <a class="btn" href="#cake">Begin the Fairy Tale ✦</a>
-</section>
+    <div class="container">
 
-<section class="page" data-p="cake">
-  <div class="tag">Make a birthday wish</div>
-  <h2>A Cake Full of Magic</h2>
-  <p>Close your eyes, Jasmitha. Think of the wish closest to your heart, then blow out the candles. ✨</p>
-  <div class="cake" id="cake">
-    <div class="layer l1"></div><div class="layer l2"></div>
-    <div class="candle" style="left:55px"><div class="flame"></div></div>
-    <div class="candle" style="left:95px"><div class="flame"></div></div>
-    <div class="candle" style="left:135px"><div class="flame"></div></div>
-  </div>
-  <p id="cakeMsg">Three little flames, one beautiful wish.</p>
-  <button class="btn" id="blow">🌬️ Blow Out the Candles</button>
-  <a class="btn" id="toLetter" href="#letter" style="display:none">Read Your Birthday Letter 💌</a>
-</section>
+        <h1>🎉 Happy Birthday 🎉</h1>
 
-<section class="page" data-p="letter">
-  <div class="tag">A letter from the heart</div>
-  <h2>Just for You, Jasmitha</h2>
-  <div class="card letter">
-    <p>To My Beautiful Princess ♡</p>
-    <p>My dearest Jasmitha,</p>
-    <p>Lovely sisterr, something gonna missing in ur face sometimes like.... smiling, nicee pillaa ive ever mettt 😻, and for suree whenever I’m on talking with u it’s like a small baby will talking, and it makes me 😺. I saw a text from youu, and... So glad to met you in my low timee</p>
-    <p>and it’s makes very happy to talk with uu🫶💕, it’s being very 😂😎 laugh, but in my past I’m taken some punyam 🏺 from God, for that God will gifted youu as a god gifted sister 🤧🫶🕊️💘, and don’t forgit to laugh 😂 in any serious situation because piece piece rest in piece 🤧 whenever youll sad remember me. I think it keeps ur smile back, not for suree but its jst like that,, I’m very greatful to have you chelliiloooooooo💘🕊️🫶🤧</p>
-    <p>No matter how much time passes, I hope you never forget how special you are. Keep shining in your own beautiful way, my birthday princess.</p>
-    <p>Happy Birthday, Jasmitha. May your story be magical. ✨</p>
-    <p>With all my love, always ♡ 💗</p>
-  </div>
-  <a class="btn" href="#memories">Our Memories 📸</a>
-</section>
+        <div class="balloons">
+            🎈 🎈 🎈 🎈 🎈
+        </div>
 
-<section class="page" data-p="memories">
-  <div class="tag">Moments we kept</div>
-  <h2>Our Memories 📸</h2>
-  <p>Tap a slot to add a photo.</p>
-  <div class="slots" id="slots"></div>
-  <p>And now, Jasmitha… there’s just one more thing waiting for you.</p>
-  <a class="btn" href="#secret">🎁 Surprise Me</a>
-</section>
+        <div class="cake">🎂</div>
 
-<section class="page" data-p="secret">
-  <div class="tag">The next chapter awaits</div>
-  <h2>✨ A Little Secret ✨</h2>
-  <p>Enter the correct birthday date ❤️</p>
-  <input type="date" id="dob">
-  <p>Enter your secret emoji 🔐</p>
-  <p style="font-size:.85rem">Hint: the face you make when you’re up to something 😉</p>
-  <input type="text" id="emo" placeholder="?" maxlength="4">
-  <div class="err" id="err"></div>
-  <button class="btn" id="unlock">Unlock Surprise ❤️</button>
-</section>
+        <h2>Dear Birthday Star!</h2>
 
-<section class="page" data-p="surprise">
-  <h2>🎉 The Wait Is Over 🎉</h2>
-  <div class="slot big" data-slot="surprise"><b>+</b>Add surprise photo</div>
-  <h1>HAPPY BIRTHDAY ❤️</h1>
-  <p>You are truly special! ✨</p>
-  <p>A little flower, grown with love 🌸</p>
-  <a class="btn" href="#home">Start Again ✦</a>
-</section>
+        <p>
+            Wishing you a day filled with happiness,
+            love and beautiful memories.
+        </p>
 
-<script>
-// ✏️ EDIT THESE: her birthday (YYYY-MM-DD, year ignored) and secret emoji. Leave date '' to accept any date.
-var CONFIG={birthday:'',emoji:'😏'};
-var pages=[].slice.call(document.querySelectorAll('.page'));
-function route(){
-  var h=(location.hash||'#home').slice(1);
-  var ok=false;
-  pages.forEach(function(p){var on=p.dataset.p===h;p.classList.toggle('on',on);if(on)ok=true});
-  if(!ok)pages[0].classList.add('on');
-  window.scrollTo(0,0);
-  if(h==='surprise')hearts(40);
-}
-window.addEventListener('hashchange',route);route();
+        <button onclick="showMessage()">
+            Click for Surprise ❤️
+        </button>
 
-function hearts(n){
-  for(var i=0;i<n;i++){
-    var s=document.createElement('span');
-    s.className='heart';s.textContent=['💖','✨','🌸','🎉','💗'][i%5];
-    s.style.left=Math.random()*100+'vw';s.style.fontSize=(16+Math.random()*22)+'px';
-    s.style.animationDuration=(3+Math.random()*3)+'s';s.style.animationDelay=(Math.random()*1.5)+'s';
-    document.body.appendChild(s);setTimeout(function(x){x.remove()},8000,s);
-  }
-}
+        <div id="message"></div>
 
-document.getElementById('blow').onclick=function(){
-  document.getElementById('cake').classList.add('out');
-  document.getElementById('cakeMsg').textContent='Your wish is on its way ✨';
-  this.style.display='none';
-  document.getElementById('toLetter').style.display='inline-block';
-  hearts(30);
-};
+        <p class="footer">
+            🎁 Enjoy Your Special Day! 🎁
+        </p>
 
-function pick(el){
-  var f=document.createElement('input');f.type='file';f.accept='image/*';
-  f.onchange=function(){
-    if(!f.files[0])return;
-    var old=el.querySelector('img');if(old)old.remove();
-    var i=document.createElement('img');i.src=URL.createObjectURL(f.files[0]);el.appendChild(i);
-  };
-  f.click();
-}
-var box=document.getElementById('slots');
-for(var k=1;k<=6;k++){
-  var d=document.createElement('div');d.className='slot';d.innerHTML='<b>+</b>Memory '+k;
-  box.appendChild(d);
-}
-document.querySelectorAll('.slot').forEach(function(s){s.onclick=function(){pick(s)}});
+    </div>
 
-document.getElementById('unlock').onclick=function(){
-  var d=document.getElementById('dob').value,e=document.getElementById('emo').value.trim();
-  var err=document.getElementById('err');
-  var dateOk=!CONFIG.birthday||(d&&d.slice(5)===CONFIG.birthday.slice(5));
-  var emoOk=e.replace(/\uFE0F/g,'')===CONFIG.emoji.replace(/\uFE0F/g,'');
-  if(dateOk&&emoOk&&d){location.hash='#surprise'}
-  else err.textContent='Hmm, not quite right. Try again, princess 💭';
-};
-</script>
+    <script src="script.js"></script>
+
 </body>
 </html>
