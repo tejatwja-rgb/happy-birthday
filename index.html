@@ -715,7 +715,72 @@ function toggleMusic(){
     lastSound = now;
   }
   }
+// ROYAL CRACKER SOUNDS 🎆
 
+function playCracker() {
+  try {
+    if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === "suspended") audio.resume();
+
+    const now = audio.currentTime;
+
+    for (let i = 0; i < 5; i++) {
+      const osc = audio.createOscillator();
+      const gain = audio.createGain();
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(1200 + Math.random() * 1000, now + i * 0.08);
+      osc.frequency.exponentialRampToValueAtTime(250, now + i * 0.08 + 0.15);
+
+      gain.gain.setValueAtTime(0.0001, now + i * 0.08);
+      gain.gain.linearRampToValueAtTime(0.10, now + i * 0.08 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.08 + 0.18);
+
+      osc.connect(gain);
+      gain.connect(audio.destination);
+      osc.start(now + i * 0.08);
+      osc.stop(now + i * 0.08 + 0.2);
+    }
+  } catch(e) {}
+}
+
+// SOFT CONTINUOUS MAGICAL CHIMES ✨
+
+let ambientStarted = false;
+
+function startRoyalAmbience() {
+  if (ambientStarted) return;
+  ambientStarted = true;
+
+  function chime() {
+    if (!ambientStarted) return;
+
+    try {
+      if (audio && audio.state === "running") {
+        const osc = audio.createOscillator();
+        const gain = audio.createGain();
+
+        osc.type = "sine";
+        osc.frequency.value = [523, 659, 784, 1046][Math.floor(Math.random() * 4)];
+
+        gain.gain.setValueAtTime(0.0001, audio.currentTime);
+        gain.gain.linearRampToValueAtTime(0.035, audio.currentTime + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + 0.8);
+
+        osc.connect(gain);
+        gain.connect(audio.destination);
+
+        osc.start();
+        osc.stop(audio.currentTime + 0.85);
+      }
+    } catch(e) {}
+
+    setTimeout(chime, 1100);
+  }
+
+  chime();
+  }
+  
   document.addEventListener("pointerdown", e => {
     touchMagic(e.clientX, e.clientY);
   });
