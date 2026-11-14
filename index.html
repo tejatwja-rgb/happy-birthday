@@ -4,391 +4,582 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#160d35">
-<title>Jasmitha | A Royal Birthday</title>
+<meta name="theme-color" content="#090711">
+<title>Jasmitha | Royal Birthday</title>
 
 <style>
 *{box-sizing:border-box}
+:root{
+ --gold:#e8c77b;
+ --gold2:#fff0bb;
+ --purple:#a78bfa;
+ --bg:#090711;
+}
 body{
- margin:0;color:#fff;text-align:center;
- font-family:Georgia,serif;
- background:linear-gradient(145deg,#100b2b,#42216c,#a43d83);
- min-height:100vh;overflow-x:hidden
+ margin:0;background:var(--bg);color:#f8edda;
+ font-family:Georgia,serif;overflow-x:hidden;
 }
-#stars{
+button,input{font:inherit}
+#background{
+ position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+ radial-gradient(ellipse at 50% 0%,#38204d 0%,transparent 55%),
+ radial-gradient(ellipse at 10% 90%,#241433 0%,transparent 45%),
+ #090711;
+}
+#stars,#fireworks{
  position:fixed;inset:0;width:100%;height:100%;
- pointer-events:none;z-index:0
+ pointer-events:none;
 }
+#stars{z-index:0}
+#fireworks{z-index:8}
 main{position:relative;z-index:1}
 .page{
- display:none;min-height:100vh;padding:55px 20px;
- max-width:650px;margin:auto;
+ display:none;min-height:100vh;padding:65px 20px;
+ max-width:760px;margin:auto;
  flex-direction:column;align-items:center;
- justify-content:center;gap:18px
+ justify-content:center;gap:20px;text-align:center;
 }
 .page.active{display:flex;animation:appear .8s ease}
 @keyframes appear{
- from{opacity:0;transform:translateY(25px)}
+ from{opacity:0;transform:translateY(22px)}
  to{opacity:1;transform:translateY(0)}
 }
-h1,h2{
- color:#ffe4a6;font-weight:normal;
- text-shadow:0 0 20px #ff91d5
+.tag{
+ color:var(--gold);letter-spacing:4px;
+ font-size:11px;text-transform:uppercase
 }
-h1{font-size:clamp(2.4rem,9vw,4rem)}
-h2{font-size:2rem}
-p{line-height:1.7;color:#eadcf8}
-.tag{letter-spacing:4px;color:#ffb6df;font-size:12px}
-.btn{
- border:0;border-radius:30px;padding:14px 25px;
- background:linear-gradient(120deg,#ffe08a,#ff8fc9,#b99aff);
- color:#28113d;font-size:16px;cursor:pointer;
- text-decoration:none;display:inline-block;
- box-shadow:0 0 20px #ff91d566
+h1{
+ font-size:clamp(2.5rem,9vw,4.8rem);
+ color:var(--gold2);font-weight:normal;
+ text-shadow:0 0 25px #d5a64b66;
+ margin:8px 0
 }
-.btn:active{transform:scale(.96)}
-.ghost{background:#ffffff20;color:white;border:1px solid #e9c6ff}
+h2{
+ color:var(--gold);font-size:clamp(1.7rem,6vw,2.5rem);
+ font-weight:normal;margin:5px
+}
+p{color:#d8c9df;line-height:1.8}
+.crown{font-size:75px;filter:drop-shadow(0 0 20px #e8c77b)}
 .card{
- width:100%;padding:22px;border-radius:20px;
- background:#211344cc;border:1px solid #e8c47a;
- box-shadow:0 0 30px #a85aff33
+ width:100%;padding:25px;border:1px solid #b99a5c;
+ border-radius:18px;background:#17111f;
+ box-shadow:0 10px 40px #0008,0 0 25px #a67c3622
+}
+.btn{
+ padding:14px 25px;border-radius:30px;
+ border:1px solid var(--gold);
+ background:linear-gradient(120deg,#f4d993,#b88b43);
+ color:#170f1b;cursor:pointer;font-weight:bold;
+ box-shadow:0 0 20px #e8c77b22;
+ transition:.25s
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 25px #e8c77b66}
+.btn.secondary{
+ background:#1d1528;color:var(--gold);
+ border:1px solid #8c7046
 }
 #gate{
- position:fixed;inset:0;z-index:10;
+ position:fixed;inset:0;z-index:20;
  display:flex;align-items:center;justify-content:center;
- flex-direction:column;gap:20px;
- background:radial-gradient(circle,#63338a,#160d35 75%);
- cursor:pointer;transition:opacity 1s
+ flex-direction:column;text-align:center;gap:18px;
+ padding:25px;background:
+ radial-gradient(circle at center,#42274f,#090711 72%);
+ transition:opacity 1s
 }
 #gate.open{opacity:0;pointer-events:none}
-.crown{font-size:75px;animation:float 3s infinite ease-in-out}
-@keyframes float{50%{transform:translateY(-15px) rotate(5deg)}}
-.cake{font-size:100px;position:relative}
-.flame{font-size:30px;position:absolute;top:-25px;left:48%;animation:flicker .4s infinite alternate}
-@keyframes flicker{to{transform:scale(1.2)}}
+.gateTitle{font-size:clamp(2rem,8vw,3.5rem);color:var(--gold2)}
+.musicControl{
+ position:fixed;right:15px;top:15px;z-index:15;
+ background:#21182b;color:var(--gold);
+ border:1px solid #a98a53;border-radius:30px;
+ padding:10px 14px;cursor:pointer
+}
+.cake{font-size:105px;position:relative}
+.flame{
+ position:absolute;top:-28px;left:48%;font-size:28px;
+ animation:flicker .4s infinite alternate
+}
+@keyframes flicker{to{transform:scale(1.3)}}
 #sky{
- width:100%;height:300px;position:relative;
- border:1px solid #e8c47a;border-radius:20px;
- background:#ffffff0c
+ width:100%;height:280px;position:relative;
+ border:1px solid #9b7c49;border-radius:18px;
+ background:#ffffff08
 }
 .wish{
  position:absolute;background:none;border:0;
- color:#ffe58a;font-size:35px;cursor:pointer;
- animation:twinkle 1s infinite alternate
+ color:var(--gold2);font-size:36px;cursor:pointer;
+ text-shadow:0 0 18px gold;
+ animation:twinkle 1.3s infinite alternate
 }
-@keyframes twinkle{to{transform:scale(1.4);text-shadow:0 0 20px gold}}
-.letter{text-align:left;white-space:pre-line;min-height:180px}
-.slots{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;width:100%}
+@keyframes twinkle{to{transform:scale(1.35)}}
+.letter{text-align:left;white-space:pre-line}
+.photoGrid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;width:100%
+}
 .photo{
- background:#fff4e8;color:#4b2a59;padding:8px;
- transform:rotate(-2deg)
+ background:#17111f;border:1px solid #b99a5c;
+ padding:10px;border-radius:12px
 }
-.photo:nth-child(even){transform:rotate(2deg)}
 .photo img{
  width:100%;aspect-ratio:1;object-fit:cover;
- display:block;background:#e8d9ed
+ display:block;background:#0b0910;border-radius:7px
 }
-.photo input{width:100%;margin-top:8px}
-.photo p{color:#4b2a59;font-size:13px;margin:5px}
-.scratch{
- width:100%;max-width:340px;height:170px;
- position:relative;border-radius:15px;overflow:hidden
+.photo input{
+ width:100%;font-size:11px;margin-top:10px;color:#e8c77b
 }
-.scratch p{
- position:absolute;inset:0;margin:0;padding:25px;
- display:grid;place-items:center;
- background:linear-gradient(120deg,#662e85,#bd4e91)
+.photo p{font-size:12px;margin:6px}
+.bigPhoto{
+ width:100%;max-width:530px;padding:14px;
+ border:2px solid var(--gold);border-radius:18px;
+ background:#17111f;box-shadow:0 0 35px #e8c77b33
 }
-#scratchCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
-.flip{height:140px;perspective:700px;cursor:pointer}
+.bigPhoto img{
+ width:100%;aspect-ratio:4/5;object-fit:cover;
+ background:#090711;border-radius:10px;display:block
+}
+input{
+ padding:14px;border-radius:10px;
+ border:1px solid var(--gold);background:#17111f;
+ color:white;width:100%;max-width:320px
+}
+#message{color:#f1c97b;min-height:25px}
+.cards{
+ display:grid;grid-template-columns:repeat(2,1fr);
+ gap:13px;width:100%
+}
+.flip{height:145px;perspective:800px;cursor:pointer}
 .inner{
  width:100%;height:100%;position:relative;
- transition:transform .7s;transform-style:preserve-3d
+ transform-style:preserve-3d;transition:transform .7s
 }
 .flip.open .inner{transform:rotateY(180deg)}
 .front,.back{
  position:absolute;inset:0;display:grid;place-items:center;
- padding:12px;border:1px solid #e8c47a;border-radius:15px;
- backface-visibility:hidden;background:#41215f
+ padding:12px;border:1px solid var(--gold);
+ border-radius:13px;backface-visibility:hidden;
+ background:#20162b;color:var(--gold2)
 }
-.back{transform:rotateY(180deg);background:#8a3678}
-input{
- padding:13px;border-radius:10px;border:1px solid #e8c47a;
- background:#ffffff15;color:white;font-size:16px;width:100%;
- max-width:300px
+.back{transform:rotateY(180deg);background:#382442}
+.spark{
+ position:fixed;z-index:10;pointer-events:none;
+ color:#ffe9a3;font-size:20px;
+ animation:spark .8s ease-out forwards
 }
-#message{color:#ffb4d7;min-height:25px}
-#fireworks{position:fixed;inset:0;pointer-events:none;z-index:5}
+@keyframes spark{
+ 0%{opacity:1;transform:scale(.3) rotate(0)}
+ 100%{opacity:0;transform:scale(2.5) rotate(150deg)}
+}
 .heart{
- position:fixed;bottom:-30px;z-index:4;
- animation:rise 4s linear forwards;pointer-events:none
+ position:fixed;bottom:-30px;z-index:9;
+ pointer-events:none;animation:rise 4s linear forwards
 }
-@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+@keyframes rise{
+ to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+.hidden{display:none!important}
+@media(max-width:420px){
+ .page{padding:70px 16px}
+ .photoGrid{gap:10px}
+ .photo{padding:7px}
+}
 </style>
 </head>
 
 <body>
+<div id="background"></div>
 <canvas id="stars"></canvas>
 <canvas id="fireworks"></canvas>
 
+<button class="musicControl" id="musicBtn" onclick="toggleMusic()">
+ ♫ Music: OFF
+</button>
+
 <div id="gate">
- <div class="crown">👑</div>
- <h2>Jasmitha's Happy World</h2>
- <p>Tap to open the royal gates ✨</p>
- <button class="btn">Enter the Royal World</button>
+ <div class="crown">♛</div>
+ <div class="tag">A ROYAL CELEBRATION</div>
+ <h1 class="gateTitle">Jasmitha</h1>
+ <p>A special world made for my beautiful Chelli.</p>
+ <button class="btn" onclick="enterSite()">OPEN THE ROYAL GATES ✨</button>
+ <p style="font-size:11px">A birthday surprise made with love.</p>
 </div>
 
 <main>
 
 <section class="page active" id="home">
- <div class="crown">👑</div>
- <div class="tag">A LITTLE MAGIC, MADE WITH LOVE</div>
- <h1>Happy Birthday Jasmitha</h1>
- <p>Tonight, a beautiful fairy tale begins for someone who deserves all the happiness in the world.</p>
- <p id="countdown"></p>
- <button class="btn" onclick="go('cake')">Begin the Fairy Tale ✨</button>
+ <div class="crown">♛</div>
+ <div class="tag">A ROYAL BIRTHDAY CELEBRATION</div>
+ <h1>Happy Birthday<br>Jasmitha</h1>
+ <p>To my wonderful sister, my dear Chelli.<br>
+ A little world of magic, memories and love awaits you.</p>
+ <div class="card">
+  <p>✦ One special day.</p>
+  <p>✦ One beautiful soul.</p>
+  <p>✦ A lifetime of wishes.</p>
+ </div>
+ <button class="btn" onclick="go('cake')">ENTER YOUR STORY ✨</button>
 </section>
 
 <section class="page" id="cake">
- <div class="tag">CHAPTER 1 · MAKE A WISH</div>
- <h2>A Cake Full of Magic</h2>
- <p>Close your eyes, make a wish and blow out the candles!</p>
- <div class="cake" id="cakeArt">
-  <div class="flame" id="flames">🔥</div>
+ <div class="tag">CHAPTER 01 · THE WISH</div>
+ <h2>A Cake for My Chelli</h2>
+ <p>Make a beautiful wish, sister. May the universe hear it.</p>
+ <div class="cake">
+  <span class="flame" id="flames">🔥</span>
   🎂
  </div>
- <p id="cakeMessage">Three little flames, one beautiful wish.</p>
- <button class="btn" onclick="blow()">🌬️ Blow Out the Candles</button>
- <button class="btn" onclick="go('stars')">Next Surprise ⭐</button>
+ <p id="cakeMessage">Your special wish deserves a little magic.</p>
+ <button class="btn" onclick="blow()">BLOW THE CANDLES</button>
+ <button class="btn secondary" onclick="go('stars')">NEXT SURPRISE →</button>
 </section>
 
 <section class="page" id="stars">
- <div class="tag">CHAPTER 2 · WISH STARS</div>
- <h2>Catch All 5 Stars</h2>
- <p>Each star carries a little message for you.</p>
+ <div class="tag">CHAPTER 02 · FIVE WISHES</div>
+ <h2>Five Stars for You</h2>
+ <p>Touch every golden star and collect a wish.</p>
  <div id="sky"></div>
- <p id="starMessage">Tap a star to collect it ✨</p>
- <button class="btn" id="starNext" style="display:none" onclick="go('letter')">Open Your Letter 💌</button>
+ <p id="starMessage">Your first wish is waiting...</p>
+ <button class="btn hidden" id="starNext" onclick="go('letter')">NEXT SURPRISE →</button>
 </section>
 
 <section class="page" id="letter">
- <div class="tag">CHAPTER 3 · FROM THE HEART</div>
- <h2>Just for You, Jasmitha</h2>
- <div class="card letter" id="letterText">
- You are one of the most special people in my life.
+ <div class="tag">CHAPTER 03 · A LETTER</div>
+ <h2>Dear Chelli ❤️</h2>
+ <div class="card letter">
+ My dearest Jasmitha,
 
- May your days be filled with happiness, your dreams become reality, and your smile never fade.
+ You are not just my sister; you are one of the most precious parts of my life.
 
- No matter where life takes us, remember that you will always have someone cheering for you.
+ I wish you endless happiness, beautiful opportunities, courage to follow your dreams and a thousand reasons to smile.
 
- Happy Birthday, Jasmitha! 💖
+ No matter how much life changes, you will always be my lovely Chelli.
+
+ Keep shining, keep dreaming and never forget how special you are.
+
+ With lots of love,
+ Your sibling ❤️
  </div>
- <button class="btn" onclick="go('memories')">Our Memories 📸</button>
-</section>
-
-<section class="page" id="memories">
- <div class="tag">CHAPTER 4 · OUR MEMORIES</div>
- <h2>Our Memory Wall 📸</h2>
- <p>Choose photos from your phone to fill the frames.</p>
- <div class="slots">
-  <div class="photo"><img id="photo1" alt="Memory 1"><input type="file" accept="image/*" onchange="loadPhoto(event,'photo1')"><p>Beautiful Memory</p></div>
-  <div class="photo"><img id="photo2" alt="Memory 2"><input type="file" accept="image/*" onchange="loadPhoto(event,'photo2')"><p>Lovely Moment</p></div>
-  <div class="photo"><img id="photo3" alt="Memory 3"><input type="file" accept="image/*" onchange="loadPhoto(event,'photo3')"><p>Forever Together</p></div>
-  <div class="photo"><img id="photo4" alt="Memory 4"><input type="file" accept="image/*" onchange="loadPhoto(event,'photo4')"><p>Special Day</p></div>
- </div>
- <button class="btn" onclick="go('scratch')">Next Surprise 🎁</button>
-</section>
-
-<section class="page" id="scratch">
- <div class="tag">CHAPTER 5 · SCRATCH CARD</div>
- <h2>Scratch to Reveal</h2>
- <p>Use your finger to reveal your hidden message.</p>
- <div class="scratch">
-  <p>You are my favourite sister in the whole world, chelli 💖</p>
-  <canvas id="scratchCanvas" width="340" height="170"></canvas>
- </div>
- <button class="btn" onclick="revealScratch()">Reveal Message</button>
- <button class="btn" id="scratchNext" style="display:none" onclick="go('cards')">Royal Wishes 👑</button>
+ <button class="btn" onclick="go('cards')">NEXT SURPRISE →</button>
 </section>
 
 <section class="page" id="cards">
- <div class="tag">CHAPTER 6 · ROYAL WISHES</div>
- <h2>Flip Every Card 👑</h2>
- <p>Four wishes, sealed just for you.</p>
+ <div class="tag">CHAPTER 04 · FOUR LITTLE WISHES</div>
+ <h2>Open Your Royal Gifts</h2>
+ <p>Touch each card to reveal a message.</p>
  <div class="cards" id="cardsArea"></div>
- <button class="btn" id="cardsNext" style="display:none" onclick="go('secret')">One Last Secret 🔐</button>
+ <button class="btn hidden" id="cardsNext" onclick="go('memories')">NEXT SURPRISE →</button>
+</section>
+
+<section class="page" id="memories">
+ <div class="tag">CHAPTER 05 · OUR MEMORIES</div>
+ <h2>Four Little Memories</h2>
+ <p>These frames are waiting for your favourite pictures.</p>
+ <div class="photoGrid">
+  <div class="photo">
+   <img id="photo1" alt="Memory one">
+   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo1')">
+   <p>Memory One</p>
+  </div>
+  <div class="photo">
+   <img id="photo2" alt="Memory two">
+   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo2')">
+   <p>Memory Two</p>
+  </div>
+  <div class="photo">
+   <img id="photo3" alt="Memory three">
+   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo3')">
+   <p>Memory Three</p>
+  </div>
+  <div class="photo">
+   <img id="photo4" alt="Memory four">
+   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo4')">
+   <p>Memory Four</p>
+  </div>
+ </div>
+ <button class="btn" onclick="go('scratch')">NEXT SURPRISE →</button>
+</section>
+
+<section class="page" id="scratch">
+ <div class="tag">CHAPTER 06 · A HIDDEN MESSAGE</div>
+ <h2>A Secret Just for You</h2>
+ <p>Scratch the golden surface to discover your message.</p>
+ <div class="card" style="position:relative;max-width:350px;height:180px;padding:0;overflow:hidden">
+  <div style="position:absolute;inset:0;display:grid;place-items:center;padding:20px">
+   <h2 style="font-size:22px">I am lucky to have you as my Chelli! ❤️</h2>
+  </div>
+  <canvas id="scratchCanvas" width="350" height="180"
+   style="position:absolute;inset:0;width:100%;height:100%;touch-action:none">
+  </canvas>
+ </div>
+ <button class="btn" onclick="revealScratch()">REVEAL MESSAGE</button>
+ <button class="btn hidden" id="scratchNext" onclick="go('secret')">NEXT SURPRISE →</button>
 </section>
 
 <section class="page" id="secret">
- <div class="tag">THE FINAL CHAPTER</div>
- <h2>A Little Secret 🔐</h2>
- <p>Enter your birthday date.</p>
- <input type="date" id="dob">
- <p>Enter the secret emoji ❤️</p>
- <input type="text" id="emoji" placeholder="Secret emoji">
+ <div class="crown">🔐</div>
+ <div class="tag">THE FINAL ROYAL GATE</div>
+ <h2>One Last Surprise</h2>
+ <p>Only your birthday can open this special memory.</p>
+ <p>Enter your birthday below.</p>
+ <input type="date" id="birthdayCode">
  <p id="message"></p>
- <button class="btn" onclick="unlock()">Unlock Surprise ❤️</button>
+ <button class="btn" onclick="unlock()">UNLOCK MY SPECIAL PHOTO</button>
 </section>
 
-<section class="page" id="surprise">
- <div class="crown">👑</div>
- <h1>🎉 The Wait Is Over 🎉</h1>
- <h2>Happy Birthday, Princess!</h2>
- <div class="card">
-  <h2>My Wishes for You 💖</h2>
-  <p>May every dream come true.</p>
-  <p>May your smile shine every day.</p>
-  <p>May you always find reasons to be happy.</p>
-  <p>Never stop being the wonderful person you are.</p>
+<section class="page" id="final">
+ <div class="tag">THE ROYAL MEMORY · JUST FOR YOU</div>
+ <h1>My Chelli ❤️</h1>
+ <p>This final picture is a special memory, saved just for you.</p>
+ <div class="bigPhoto">
+  <img id="bigPicture" alt="Your special birthday photo">
+  <input type="file" accept="image/*" onchange="loadPhoto(event,'bigPicture')">
+  <p>YOUR SPECIAL MEMORY</p>
  </div>
- <button class="btn" onclick="celebrate()">🎆 Birthday Celebration!</button>
- <button class="btn ghost" onclick="go('home')">Start Again</button>
+ <h2>Forever My Favourite Chelli 👑</h2>
+ <p>May your life always be as beautiful as this moment.</p>
+ <button class="btn" onclick="celebrate()">🎆 CELEBRATE AGAIN</button>
+ <button class="btn secondary" onclick="go('home')">RETURN TO BEGINNING</button>
 </section>
 
 </main>
 
 <script>
-/* Birthday settings */
+/* IMPORTANT: Set the correct birthday here. */
 const CONFIG={
- birthday:"2008-11-15",
- emoji:"❤️"
+ birthday:"2008-11-15"
 };
 
-/* Page navigation */
+/* Navigation */
 function go(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  document.getElementById(id).classList.add('active');
- history.replaceState(null,"","#"+id);
- window.scrollTo(0,0);
+ window.scrollTo({top:0,behavior:'smooth'});
 }
 
-/* Royal gate */
-document.getElementById('gate').addEventListener('click',()=>{
+/* Open royal gates */
+function enterSite(){
+ startMusic();
  document.getElementById('gate').classList.add('open');
- setTimeout(()=>document.getElementById('gate').style.display='none',1100);
- hearts(25);
-});
+ setTimeout(()=>document.getElementById('gate').style.display='none',1000);
+ hearts(18);
+}
 
 /* Cake */
-let candlesOut=false;
 function blow(){
- if(candlesOut)return;
- candlesOut=true;
  document.getElementById('flames').style.display='none';
- document.getElementById('cakeMessage').textContent="Your wish is on its way to the stars! ✨";
+ document.getElementById('cakeMessage').textContent=
+ "May every beautiful wish of yours come true, Chelli! ❤️";
  hearts(20);
+ burst();
 }
 
-/* Wish stars */
-const wishes=[
- "Your smile makes everything brighter 💖",
- "Never stop dreaming 🌟",
- "You deserve endless happiness 🌸",
- "Keep shining like a star ✨",
- "Always remember how special you are 👑"
+/* Five stars */
+const wishList=[
+ "May your smile shine every day, Chelli ❤️",
+ "May your dreams become reality ✨",
+ "May happiness follow you everywhere 🌸",
+ "May you always be strong and fearless 👑",
+ "You will always be special to me 💛"
 ];
-let collected=0;
+let starCount=0;
 const sky=document.getElementById('sky');
 
-wishes.forEach((wish,i)=>{
- const s=document.createElement('button');
- s.className='wish';
- s.textContent='✦';
- s.style.left=(10+(i*17))+'%';
- s.style.top=(20+(i%3)*25)+'%';
- s.onclick=()=>{
-  if(s.disabled)return;
-  s.disabled=true;s.style.opacity='.25';
-  collected++;
+wishList.forEach((wish,i)=>{
+ const star=document.createElement('button');
+ star.className='wish';star.textContent='✦';
+ star.style.left=(10+i*18)+'%';
+ star.style.top=(20+(i%3)*25)+'%';
+ star.onclick=()=>{
+  if(star.dataset.done)return;
+  star.dataset.done='yes';
+  star.style.opacity='.2';
+  starCount++;
   document.getElementById('starMessage').textContent=wish;
-  if(collected===5){
-   document.getElementById('starMessage').textContent="You collected all five wishes! 💖";
-   document.getElementById('starNext').style.display='inline-block';
-   hearts(20);
+  if(starCount===5){
+   document.getElementById('starMessage').textContent="All five wishes are yours, Chelli! 💖";
+   document.getElementById('starNext').classList.remove('hidden');
   }
  };
- sky.appendChild(s);
+ sky.appendChild(star);
 });
 
-/* Photo uploads */
+/* Four gift cards */
+const giftMessages=[
+ "You deserve all the happiness in this world. 💛",
+ "Never stop believing in your dreams. ✨",
+ "Your smile is a beautiful gift. 🌸",
+ "I will always be proud of you, Chelli. ❤️"
+];
+let giftCount=0;
+giftMessages.forEach(msg=>{
+ const card=document.createElement('div');
+ card.className='flip';
+ card.innerHTML='<div class="inner"><div class="front">♛<br>OPEN YOUR GIFT</div><div class="back"></div></div>';
+ card.querySelector('.back').textContent=msg;
+ card.onclick=()=>{
+  if(card.classList.contains('open'))return;
+  card.classList.add('open');giftCount++;
+  if(giftCount===4)document.getElementById('cardsNext').classList.remove('hidden');
+ };
+ document.getElementById('cardsArea').appendChild(card);
+});
+
+/* Image selection */
 function loadPhoto(event,id){
  const file=event.target.files[0];
  if(!file)return;
+ if(!file.type.startsWith('image/')){
+  alert('Please select an image file.');
+  return;
+ }
  const reader=new FileReader();
  reader.onload=e=>document.getElementById(id).src=e.target.result;
  reader.readAsDataURL(file);
 }
 
 /* Scratch card */
-const canvas=document.getElementById('scratchCanvas');
-const ctx=canvas.getContext('2d');
-ctx.fillStyle='#b9a0c8';
-ctx.fillRect(0,0,340,170);
-ctx.fillStyle='#3d1b59';
-ctx.font='bold 22px Georgia';
-ctx.textAlign='center';
-ctx.fillText('SCRATCH HERE ✨',170,92);
-let scratching=false;
+const scratchCanvas=document.getElementById('scratchCanvas');
+const sctx=scratchCanvas.getContext('2d');
+sctx.fillStyle='#b38a42';
+sctx.fillRect(0,0,350,180);
+sctx.fillStyle='#201426';
+sctx.textAlign='center';
+sctx.font='bold 22px Georgia';
+sctx.fillText('SCRATCH TO REVEAL ✨',175,95);
 
+let scratching=false;
 function scratch(e){
- const rect=canvas.getBoundingClientRect();
- const x=(e.clientX-rect.left)*canvas.width/rect.width;
- const y=(e.clientY-rect.top)*canvas.height/rect.height;
- ctx.globalCompositeOperation='destination-out';
- ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();
+ const r=scratchCanvas.getBoundingClientRect();
+ const x=(e.clientX-r.left)*350/r.width;
+ const y=(e.clientY-r.top)*180/r.height;
+ sctx.globalCompositeOperation='destination-out';
+ sctx.beginPath();sctx.arc(x,y,24,0,Math.PI*2);sctx.fill();
 }
-canvas.addEventListener('pointerdown',e=>{scratching=true;canvas.setPointerCapture(e.pointerId);scratch(e)});
-canvas.addEventListener('pointermove',e=>{if(scratching)scratch(e)});
-canvas.addEventListener('pointerup',()=>scratching=false);
-canvas.addEventListener('pointercancel',()=>scratching=false);
+scratchCanvas.addEventListener('pointerdown',e=>{
+ scratching=true;
+ scratchCanvas.setPointerCapture(e.pointerId);
+ scratch(e);
+});
+scratchCanvas.addEventListener('pointermove',e=>{
+ if(scratching)scratch(e);
+});
+scratchCanvas.addEventListener('pointerup',()=>scratching=false);
+scratchCanvas.addEventListener('pointercancel',()=>scratching=false);
 
 function revealScratch(){
- canvas.style.display='none';
- document.getElementById('scratchNext').style.display='inline-block';
+ scratchCanvas.style.display='none';
+ document.getElementById('scratchNext').classList.remove('hidden');
 }
 
-/* Flip cards */
-const cardMessages=[
- "May all your dreams come true 🌠",
- "Never stop smiling, princess 😊",
- "Be fearless and always be yourself 👑",
- "You are loved more than you know 💗"
-];
-let flipped=0;
-const cardsArea=document.getElementById('cardsArea');
-
-cardMessages.forEach(message=>{
- const card=document.createElement('div');
- card.className='flip';
- card.innerHTML='<div class="inner"><div class="front">👑 Tap Me</div><div class="back"></div></div>';
- card.querySelector('.back').textContent=message;
- card.onclick=()=>{
-  if(card.classList.contains('open'))return;
-  card.classList.add('open');flipped++;
-  if(flipped===4)document.getElementById('cardsNext').style.display='inline-block';
- };
- cardsArea.appendChild(card);
-});
-
-/* Secret unlock */
+/* Birthday unlock */
 function unlock(){
- const d=document.getElementById('dob').value;
- const e=document.getElementById('emoji').value.trim().replace(/\\uFE0F/g,'');
- const expected=CONFIG.emoji.replace(/\\uFE0F/g,'');
- if(d===CONFIG.birthday && e===expected){
-  go('surprise');celebrate();
+ const entered=document.getElementById('birthdayCode').value;
+ if(entered===CONFIG.birthday){
+  document.getElementById('message').textContent="The royal gate is open! ❤️";
+  go('final');
+  burst();hearts(30);
  }else{
-  document.getElementById('message').textContent="Not quite right. Try again, princess 💭";
+  document.getElementById('message').textContent="That date doesn't match. Try again, Chelli. 💭";
  }
 }
 
-/* Hearts */
+/* Background music: original generated melody */
+let audio=null,musicTimer=null,musicOn=false;
+let noteIndex=0;
+const melody=[261.63,329.63,392,329.63,293.66,349.23,440,392];
+
+function startMusic(){
+ if(musicOn)return;
+ const AudioContext=window.AudioContext||window.webkitAudioContext;
+ if(!AudioContext)return;
+ audio=audio||new AudioContext();
+ audio.resume();
+ musicOn=true;
+ document.getElementById('musicBtn').textContent='♫ Music: ON';
+ playNote();
+ musicTimer=setInterval(playNote,650);
+}
+function playNote(){
+ if(!audio||!musicOn)return;
+ const osc=audio.createOscillator();
+ const gain=audio.createGain();
+ osc.type='sine';
+ osc.frequency.value=melody[noteIndex%melody.length];
+ gain.gain.setValueAtTime(.0001,audio.currentTime);
+ gain.gain.exponentialRampToValueAtTime(.045,audio.currentTime+.08);
+ gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+.55);
+ osc.connect(gain);gain.connect(audio.destination);
+ osc.start();osc.stop(audio.currentTime+.6);
+ noteIndex++;
+}
+function toggleMusic(){
+ if(!musicOn){
+  startMusic();
+ }else{
+  musicOn=false;
+  clearInterval(musicTimer);
+  document.getElementById('musicBtn').textContent='♫ Music: OFF';
+ }
+}
+
+/* Cracker / firework sound effect */
+let lastBoom=0;
+function crackerSound(){
+ const now=Date.now();
+ if(now-lastBoom<250)return;
+ lastBoom=now;
+ const AudioContext=window.AudioContext||window.webkitAudioContext;
+ if(!AudioContext)return;
+ audio=audio||new AudioContext();
+ audio.resume();
+
+ const duration=.35;
+ const buffer=audio.createBuffer(1,audio.sampleRate*duration,audio.sampleRate);
+ const data=buffer.getChannelData(0);
+ for(let i=0;i<data.length;i++){
+  data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,3);
+ }
+ const source=audio.createBufferSource();
+ const gain=audio.createGain();
+ const filter=audio.createBiquadFilter();
+ filter.type='lowpass';filter.frequency.value=1800;
+ gain.gain.setValueAtTime(.22,audio.currentTime);
+ gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);
+ source.buffer=buffer;
+ source.connect(filter);filter.connect(gain);gain.connect(audio.destination);
+ source.start();
+}
+
+/* Sparkles on touch */
+let lastSpark=0;
+function touchSpark(e){
+ const now=Date.now();
+ if(now-lastSpark<45)return;
+ lastSpark=now;
+ const x=e.clientX,y=e.clientY;
+ const symbols=['✦','✧','✨','⋆','💫'];
+ for(let i=0;i<3;i++){
+  const el=document.createElement('span');
+  el.className='spark';
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=(x+(Math.random()-.5)*45)+'px';
+  el.style.top=(y+(Math.random()-.5)*45)+'px';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),850);
+ }
+}
+document.addEventListener('pointerdown',e=>{
+ touchSpark(e);
+ crackerSound();
+});
+
+/* Floating hearts */
 function hearts(n){
  for(let i=0;i<n;i++){
   const h=document.createElement('div');
   h.className='heart';
-  h.textContent=['💖','✨','🌸','👑'][Math.floor(Math.random()*4)];
+  h.textContent=['💛','💖','✨','🌸'][Math.floor(Math.random()*4)];
   h.style.left=Math.random()*100+'vw';
   h.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(h);
@@ -400,80 +591,63 @@ function hearts(n){
 const fx=document.getElementById('fireworks');
 const fctx=fx.getContext('2d');
 let particles=[];
-function resize(){
+function resizeFX(){
  fx.width=window.innerWidth;
  fx.height=window.innerHeight;
 }
-resize();window.addEventListener('resize',resize);
+resizeFX();window.addEventListener('resize',resizeFX);
 
 function burst(){
  const x=Math.random()*fx.width;
- const y=Math.random()*fx.height*.55;
+ const y=Math.random()*fx.height*.6;
  for(let i=0;i<65;i++){
-  const a=Math.PI*2*i/65;
+  const angle=Math.PI*2*i/65;
   const speed=1+Math.random()*5;
   particles.push({
-   x,y,
-   vx:Math.cos(a)*speed,
-   vy:Math.sin(a)*speed,
-   life:1,
-   color:['#ffe08a','#ff7eb6','#a78bfa','#ffffff'][Math.floor(Math.random()*4)]
+   x,y,vx:Math.cos(angle)*speed,
+   vy:Math.sin(angle)*speed,life:1,
+   color:['#ffe6a1','#d8a8ff','#ff9bc5','#ffffff'][Math.floor(Math.random()*4)]
   });
  }
 }
-function animate(){
+function animateFX(){
  fctx.clearRect(0,0,fx.width,fx.height);
  particles=particles.filter(p=>p.life>0);
  particles.forEach(p=>{
-  p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.life-=.015;
-  fctx.globalAlpha=p.life;
-  fctx.fillStyle=p.color;
+  p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.life-=.018;
+  fctx.globalAlpha=p.life;fctx.fillStyle=p.color;
   fctx.beginPath();fctx.arc(p.x,p.y,3,0,Math.PI*2);fctx.fill();
  });
  fctx.globalAlpha=1;
- requestAnimationFrame(animate);
+ requestAnimationFrame(animateFX);
 }
-animate();
-
+animateFX();
 function celebrate(){
- hearts(40);
- for(let i=0;i<8;i++)setTimeout(burst,i*350);
+ hearts(45);
+ for(let i=0;i<10;i++)setTimeout(burst,i*300);
 }
 
-/* Birthday countdown */
-function updateCountdown(){
- const now=new Date();
- let next=new Date(now.getFullYear(),10,15);
- if(next<now)next=new Date(now.getFullYear()+1,10,15);
- const days=Math.ceil((next-now)/86400000);
- document.getElementById('countdown').textContent=
- days===0?"👑 Today is your special day! 👑":
- "👑 "+days+" days until your birthday 👑";
-}
-updateCountdown();
-setInterval(updateCountdown,60000);
-
-/* Background stars */
-const bg=document.getElementById('stars');
-const bgctx=bg.getContext('2d');
-let starPoints=[];
+/* Starry background */
+const bgCanvas=document.getElementById('stars');
+const bgctx=bgCanvas.getContext('2d');
+let points=[];
 function resizeStars(){
- bg.width=window.innerWidth;
- bg.height=window.innerHeight;
- starPoints=Array.from({length:100},()=>({
-  x:Math.random()*bg.width,
-  y:Math.random()*bg.height,
-  r:Math.random()*1.8+.3,
-  a:Math.random()
+ bgCanvas.width=window.innerWidth;
+ bgCanvas.height=window.innerHeight;
+ points=Array.from({length:110},()=>({
+  x:Math.random()*bgCanvas.width,
+  y:Math.random()*bgCanvas.height,
+  r:Math.random()*1.6+.3,
+  a:Math.random()*6
  }));
 }
 resizeStars();window.addEventListener('resize',resizeStars);
 function drawStars(){
- bgctx.clearRect(0,0,bg.width,bg.height);
- starPoints.forEach(s=>{
+ bgctx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+ points.forEach(s=>{
   s.a+=.025;
-  bgctx.globalAlpha=.3+Math.abs(Math.sin(s.a))*.7;
-  bgctx.fillStyle='#ffe9ae';
+  bgctx.globalAlpha=.2+Math.abs(Math.sin(s.a))*.7;
+  bgctx.fillStyle='#ffe6a1';
   bgctx.beginPath();bgctx.arc(s.x,s.y,s.r,0,Math.PI*2);bgctx.fill();
  });
  bgctx.globalAlpha=1;
@@ -483,4 +657,3 @@ drawStars();
 </script>
 </body>
 </html>
-
