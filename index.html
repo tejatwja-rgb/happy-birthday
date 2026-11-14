@@ -334,30 +334,36 @@ secrets.forEach((message,i)=>{
 });
 
 /* PHOTO SLOTS */
-const photoNames=[
-  "Our first photo","Best laugh ever",
-  "Favourite day","Crazy moments",
-  "Sweet memories","Forever memories"
+const photos = [
+  "photo1.jpg",
+  "photo2.jpg",
+  "photo3.jpg",
+  "photo4.jpg",
+  "photo5.jpg",
+  "photo6.jpg"
 ];
 
-photoNames.forEach(name=>{
-  let d=document.createElement("div");
-  d.className="photo";
-  d.innerHTML=`<img src="" alt="${name}" style="display:none">
-  <button>＋ Add Photo</button><small>${name}</small>`;
-  d.querySelector("button").onclick=()=>{
-    let input=document.createElement("input");
-    input.type="file";input.accept="image/*";
-    input.onchange=()=>{
-      if(!input.files[0])return;
-      let img=d.querySelector("img");
-      img.src=URL.createObjectURL(input.files[0]);
-      img.style.display="block";
-    };
-    input.click();
-  };
+const photoNames = [
+  "Our first photo",
+  "Best laugh ever",
+  "Favourite day",
+  "Crazy moments",
+  "Sweet memories",
+  "Forever memories"
+];
+
+photos.forEach((src, i) => {
+  let d = document.createElement("div");
+  d.className = "photo";
+
+  d.innerHTML = `
+    <img src="${src}" alt="${photoNames[i]}">
+    <small>${photoNames[i]}</small>
+  `;
+
   $("photoGrid").appendChild(d);
 });
+
 
 /* SCRATCH CARD */
 const sc=$("scratchCanvas");
