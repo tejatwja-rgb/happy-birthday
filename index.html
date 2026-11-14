@@ -704,13 +704,16 @@ function toggleMusic(){
   }
 
   function touchMagic(x, y) {
-    burst(x, y, 48);
-    const now = performance.now();
+  burst(x, y, 70);
+  playCracker();
+  startRoyalAmbience();
 
-    if (now - lastSound > 85) {
-      playMagicMusic();
-      lastSound = now;
-    }
+  const now = performance.now();
+
+  if (now - lastSound > 85) {
+    playMagicMusic();
+    lastSound = now;
+  }
   }
 
   document.addEventListener("pointerdown", e => {
