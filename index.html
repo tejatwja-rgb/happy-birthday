@@ -4,656 +4,594 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090711">
-<title>Jasmitha | Royal Birthday</title>
+<title>Jasmitha | A Royal Birthday</title>
 
 <style>
+:root {
+  --gold:#ffdc91;
+  --pink:#ff8fc4;
+  --purple:#241044;
+  --white:#fff2ff;
+}
 *{box-sizing:border-box}
-:root{
- --gold:#e8c77b;
- --gold2:#fff0bb;
- --purple:#a78bfa;
- --bg:#090711;
-}
 body{
- margin:0;background:var(--bg);color:#f8edda;
- font-family:Georgia,serif;overflow-x:hidden;
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(145deg,#100923,#392064,#8b397f);
+  color:var(--white);
+  font-family:Georgia,serif;
+  text-align:center;
+  overflow-x:hidden;
 }
-button,input{font:inherit}
-#background{
- position:fixed;inset:0;z-index:0;pointer-events:none;
- background:
- radial-gradient(ellipse at 50% 0%,#38204d 0%,transparent 55%),
- radial-gradient(ellipse at 10% 90%,#241433 0%,transparent 45%),
- #090711;
+#fireworks{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:5;pointer-events:none;
 }
-#stars,#fireworks{
- position:fixed;inset:0;width:100%;height:100%;
- pointer-events:none;
-}
-#stars{z-index:0}
-#fireworks{z-index:8}
-main{position:relative;z-index:1}
 .page{
- display:none;min-height:100vh;padding:65px 20px;
- max-width:760px;margin:auto;
- flex-direction:column;align-items:center;
- justify-content:center;gap:20px;text-align:center;
+  display:none;position:relative;z-index:2;
+  min-height:100vh;padding:45px 20px;
+  max-width:650px;margin:auto;
+  flex-direction:column;align-items:center;
+  justify-content:center;gap:17px;
 }
 .page.active{display:flex;animation:appear .8s ease}
 @keyframes appear{
- from{opacity:0;transform:translateY(22px)}
- to{opacity:1;transform:translateY(0)}
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
 }
-.tag{
- color:var(--gold);letter-spacing:4px;
- font-size:11px;text-transform:uppercase
+h1,h2{
+  color:var(--gold);font-weight:normal;
+  text-shadow:0 0 20px #ff86d5;
 }
-h1{
- font-size:clamp(2.5rem,9vw,4.8rem);
- color:var(--gold2);font-weight:normal;
- text-shadow:0 0 25px #d5a64b66;
- margin:8px 0
-}
-h2{
- color:var(--gold);font-size:clamp(1.7rem,6vw,2.5rem);
- font-weight:normal;margin:5px
-}
-p{color:#d8c9df;line-height:1.8}
-.crown{font-size:75px;filter:drop-shadow(0 0 20px #e8c77b)}
+h1{font-size:clamp(2.4rem,9vw,4rem)}
+h2{font-size:clamp(1.7rem,7vw,2.5rem)}
+p{line-height:1.7;color:#f2dffb}
+.tag{color:#ffb6df;letter-spacing:3px;font-size:12px}
 .card{
- width:100%;padding:25px;border:1px solid #b99a5c;
- border-radius:18px;background:#17111f;
- box-shadow:0 10px 40px #0008,0 0 25px #a67c3622
+  width:100%;padding:22px;border-radius:20px;
+  border:1px solid #ffdc9188;
+  background:#ffffff13;backdrop-filter:blur(10px);
+  box-shadow:0 0 30px #bd70ff33;
 }
 .btn{
- padding:14px 25px;border-radius:30px;
- border:1px solid var(--gold);
- background:linear-gradient(120deg,#f4d993,#b88b43);
- color:#170f1b;cursor:pointer;font-weight:bold;
- box-shadow:0 0 20px #e8c77b22;
- transition:.25s
+  border:0;border-radius:40px;padding:14px 25px;
+  background:linear-gradient(120deg,#ffdc91,#ff83bd);
+  color:#32133e;font-size:16px;font-family:inherit;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 0 20px #ff83bd66;
+  margin:5px;
 }
-.btn:hover{transform:translateY(-3px);box-shadow:0 0 25px #e8c77b66}
-.btn.secondary{
- background:#1d1528;color:var(--gold);
- border:1px solid #8c7046
+.btn.secondary{background:#ffffff20;color:white;border:1px solid #ffffff55}
+input{
+  width:100%;padding:13px;border-radius:12px;
+  border:1px solid var(--gold);background:#ffffff15;
+  color:white;font-size:17px;text-align:center;
 }
+input[type=date]{color-scheme:dark}
+.crown{font-size:75px;animation:float 3s infinite ease-in-out}
+@keyframes float{50%{transform:translateY(-15px) rotate(5deg)}}
 #gate{
- position:fixed;inset:0;z-index:20;
- display:flex;align-items:center;justify-content:center;
- flex-direction:column;text-align:center;gap:18px;
- padding:25px;background:
- radial-gradient(circle at center,#42274f,#090711 72%);
- transition:opacity 1s
+  position:fixed;inset:0;z-index:20;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:15px;
+  background:radial-gradient(circle,#713a91,#170b2d 75%);
+  transition:opacity 1s,transform 1.5s;
 }
-#gate.open{opacity:0;pointer-events:none}
-.gateTitle{font-size:clamp(2rem,8vw,3.5rem);color:var(--gold2)}
-.musicControl{
- position:fixed;right:15px;top:15px;z-index:15;
- background:#21182b;color:var(--gold);
- border:1px solid #a98a53;border-radius:30px;
- padding:10px 14px;cursor:pointer
-}
-.cake{font-size:105px;position:relative}
-.flame{
- position:absolute;top:-28px;left:48%;font-size:28px;
- animation:flicker .4s infinite alternate
-}
-@keyframes flicker{to{transform:scale(1.3)}}
-#sky{
- width:100%;height:280px;position:relative;
- border:1px solid #9b7c49;border-radius:18px;
- background:#ffffff08
-}
-.wish{
- position:absolute;background:none;border:0;
- color:var(--gold2);font-size:36px;cursor:pointer;
- text-shadow:0 0 18px gold;
- animation:twinkle 1.3s infinite alternate
-}
-@keyframes twinkle{to{transform:scale(1.35)}}
-.letter{text-align:left;white-space:pre-line}
-.photoGrid{
- display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
- gap:16px;width:100%
+#gate.hide{opacity:0;transform:scale(1.5);pointer-events:none}
+.doors{display:flex;gap:8px;font-size:65px}
+.photo-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:15px;width:100%;
 }
 .photo{
- background:#17111f;border:1px solid #b99a5c;
- padding:10px;border-radius:12px
+  background:#fff2e8;padding:8px 8px 14px;
+  color:#58366d;transform:rotate(-2deg);
 }
-.photo img{
- width:100%;aspect-ratio:1;object-fit:cover;
- display:block;background:#0b0910;border-radius:7px
+.photo:nth-child(even){transform:rotate(2deg)}
+.photo img{width:100%;aspect-ratio:1;object-fit:cover}
+.photo button{
+  width:100%;padding:12px;background:#e9d6ee;
+  border:0;color:#53346a;cursor:pointer;
 }
-.photo input{
- width:100%;font-size:11px;margin-top:10px;color:#e8c77b
+.photo small{display:block;padding:8px 2px 0}
+.starbox{
+  height:260px;width:100%;position:relative;
+  border:1px solid #ffffff55;border-radius:20px;
 }
-.photo p{font-size:12px;margin:6px}
-.bigPhoto{
- width:100%;max-width:530px;padding:14px;
- border:2px solid var(--gold);border-radius:18px;
- background:#17111f;box-shadow:0 0 35px #e8c77b33
+.star{
+  position:absolute;background:none;border:0;
+  color:#ffe58a;font-size:35px;cursor:pointer;
+  text-shadow:0 0 15px gold;
 }
-.bigPhoto img{
- width:100%;aspect-ratio:4/5;object-fit:cover;
- background:#090711;border-radius:10px;display:block
+.scratch{
+  position:relative;width:100%;max-width:340px;height:170px;
 }
-input{
- padding:14px;border-radius:10px;
- border:1px solid var(--gold);background:#17111f;
- color:white;width:100%;max-width:320px
+.scratch p{
+  position:absolute;inset:0;display:grid;
+  place-items:center;background:#713b87;
+  border-radius:15px;padding:15px;
 }
-#message{color:#f1c97b;min-height:25px}
-.cards{
- display:grid;grid-template-columns:repeat(2,1fr);
- gap:13px;width:100%
+#scratchCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  touch-action:none;border-radius:15px;
 }
-.flip{height:145px;perspective:800px;cursor:pointer}
-.inner{
- width:100%;height:100%;position:relative;
- transform-style:preserve-3d;transition:transform .7s
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.flip{
+  min-height:130px;border:1px solid var(--gold);
+  border-radius:15px;background:#6c347f;
+  color:white;font-size:16px;padding:15px;cursor:pointer;
 }
-.flip.open .inner{transform:rotateY(180deg)}
-.front,.back{
- position:absolute;inset:0;display:grid;place-items:center;
- padding:12px;border:1px solid var(--gold);
- border-radius:13px;backface-visibility:hidden;
- background:#20162b;color:var(--gold2)
-}
-.back{transform:rotateY(180deg);background:#382442}
-.spark{
- position:fixed;z-index:10;pointer-events:none;
- color:#ffe9a3;font-size:20px;
- animation:spark .8s ease-out forwards
-}
-@keyframes spark{
- 0%{opacity:1;transform:scale(.3) rotate(0)}
- 100%{opacity:0;transform:scale(2.5) rotate(150deg)}
-}
-.heart{
- position:fixed;bottom:-30px;z-index:9;
- pointer-events:none;animation:rise 4s linear forwards
-}
-@keyframes rise{
- to{transform:translateY(-110vh) rotate(360deg);opacity:0}
-}
-.hidden{display:none!important}
-@media(max-width:420px){
- .page{padding:70px 16px}
- .photoGrid{gap:10px}
- .photo{padding:7px}
+.flip.open{background:#a43e83}
+#message{color:#ffb4d9;min-height:25px}
+#music{
+  position:fixed;bottom:18px;right:15px;z-index:10;
+  border-radius:50%;width:48px;height:48px;
+  background:#392064;color:var(--gold);
+  border:1px solid var(--gold);font-size:22px;
 }
 </style>
 </head>
 
 <body>
-<div id="background"></div>
-<canvas id="stars"></canvas>
+
 <canvas id="fireworks"></canvas>
 
-<button class="musicControl" id="musicBtn" onclick="toggleMusic()">
- ♫ Music: OFF
-</button>
-
+<!-- FIRST ROYAL GATE -->
 <div id="gate">
- <div class="crown">♛</div>
- <div class="tag">A ROYAL CELEBRATION</div>
- <h1 class="gateTitle">Jasmitha</h1>
- <p>A special world made for my beautiful Chelli.</p>
- <button class="btn" onclick="enterSite()">OPEN THE ROYAL GATES ✨</button>
- <p style="font-size:11px">A birthday surprise made with love.</p>
+  <div class="crown">👑</div>
+  <h1>Jasmitha's Happy World</h1>
+  <p>A magical surprise is waiting for you...</p>
+  <div class="doors">🚪✨🚪</div>
+  <button class="btn" onclick="openGate()">Open Your Royal Kingdom 💖</button>
 </div>
 
-<main>
-
+<!-- HOME -->
 <section class="page active" id="home">
- <div class="crown">♛</div>
- <div class="tag">A ROYAL BIRTHDAY CELEBRATION</div>
- <h1>Happy Birthday<br>Jasmitha</h1>
- <p>To my wonderful sister, my dear Chelli.<br>
- A little world of magic, memories and love awaits you.</p>
- <div class="card">
-  <p>✦ One special day.</p>
-  <p>✦ One beautiful soul.</p>
-  <p>✦ A lifetime of wishes.</p>
- </div>
- <button class="btn" onclick="go('cake')">ENTER YOUR STORY ✨</button>
+  <div class="crown">👑</div>
+  <div class="tag">A LITTLE MAGIC, MADE WITH LOVE</div>
+  <h1>Happy Birthday Jasmitha!</h1>
+  <p>✧ ── ♡ ── ✧</p>
+  <p>Tonight, a little fairy tale comes alive for someone who deserves all the magic in the world.</p>
+  <button class="btn" onclick="go('cake')">Begin the Fairy Tale ✨</button>
 </section>
 
+<!-- CAKE -->
 <section class="page" id="cake">
- <div class="tag">CHAPTER 01 · THE WISH</div>
- <h2>A Cake for My Chelli</h2>
- <p>Make a beautiful wish, sister. May the universe hear it.</p>
- <div class="cake">
-  <span class="flame" id="flames">🔥</span>
-  🎂
- </div>
- <p id="cakeMessage">Your special wish deserves a little magic.</p>
- <button class="btn" onclick="blow()">BLOW THE CANDLES</button>
- <button class="btn secondary" onclick="go('stars')">NEXT SURPRISE →</button>
+  <div class="tag">CHAPTER 1 · MAKE A WISH</div>
+  <h2>A Cake Full of Magic 🎂</h2>
+  <p>Close your eyes, make a wish and blow out the candles!</p>
+  <div style="font-size:100px" id="cakeEmoji">🎂</div>
+  <button class="btn" onclick="blowCake()">Blow Out the Candles 🌬️</button>
+  <button class="btn secondary" id="cakeNext" style="display:none" onclick="go('stars')">Catch Your Wish Stars ⭐</button>
 </section>
 
+<!-- STARS -->
 <section class="page" id="stars">
- <div class="tag">CHAPTER 02 · FIVE WISHES</div>
- <h2>Five Stars for You</h2>
- <p>Touch every golden star and collect a wish.</p>
- <div id="sky"></div>
- <p id="starMessage">Your first wish is waiting...</p>
- <button class="btn hidden" id="starNext" onclick="go('letter')">NEXT SURPRISE →</button>
+  <div class="tag">CHAPTER 2 · WISH STARS</div>
+  <h2>Catch All 5 Stars ⭐</h2>
+  <p>Each star carries a little secret about you.</p>
+  <div class="starbox" id="starbox"></div>
+  <p id="message">Find all five stars!</p>
+  <button class="btn" id="starNext" style="display:none" onclick="go('letter')">Open Your Letter 💌</button>
 </section>
 
+<!-- LETTER -->
 <section class="page" id="letter">
- <div class="tag">CHAPTER 03 · A LETTER</div>
- <h2>Dear Chelli ❤️</h2>
- <div class="card letter">
- My dearest Jasmitha,
+  <div class="tag">CHAPTER 3 · FROM THE HEART</div>
+  <h2>Just for You, Jasmitha 💗</h2>
+  <div class="card" style="text-align:left;white-space:pre-line;line-height:1.9" id="letterText">
+To My Beautiful Princess ♡
 
- You are not just my sister; you are one of the most precious parts of my life.
+My dearest Jasmitha,
 
- I wish you endless happiness, beautiful opportunities, courage to follow your dreams and a thousand reasons to smile.
+Lovely sisterr, something gonna missing in ur face sometimes like.... smiling ,nicee pillaa ive ever mettt 😻,and for suree whenever I'm on talking with u it,s like a small baby will talking ,and it makes me 😺 I saw a text from youu,and... So glad to met you in my low timee and it's makes very happy to talk with uu🫶💕 , it's being very 😂😎 laugh ,but In my past I'm taken some punyam 🏺 from God for that god will gifted youu as a god gifted sister 🤧🫶🕊️💘 , and don't forgit to laugh 😂 in any serious situation because piece piece rest in piece 🤧 whenever youll sad remember me I think it keeps ur smile back not for suree but its jst like that ,,I'm very greatful to have you chelliiloooooooo💘🕊️🫶🤧✨
 
- No matter how much life changes, you will always be my lovely Chelli.
+No matter how much time passes, I hope you never forget how special you are.
 
- Keep shining, keep dreaming and never forget how special you are.
+Keep smiling, keep laughing and keep shining, princess.
 
- With lots of love,
- Your sibling ❤️
- </div>
- <button class="btn" onclick="go('cards')">NEXT SURPRISE →</button>
+Happy Birthday, Jasmitha! 🎂💗
+
+With all my love, always. ♡
+  </div>
+  <button class="btn" onclick="go('memories')">Our Memories 📸</button>
 </section>
 
-<section class="page" id="cards">
- <div class="tag">CHAPTER 04 · FOUR LITTLE WISHES</div>
- <h2>Open Your Royal Gifts</h2>
- <p>Touch each card to reveal a message.</p>
- <div class="cards" id="cardsArea"></div>
- <button class="btn hidden" id="cardsNext" onclick="go('memories')">NEXT SURPRISE →</button>
-</section>
-
+<!-- MEMORIES -->
 <section class="page" id="memories">
- <div class="tag">CHAPTER 05 · OUR MEMORIES</div>
- <h2>Four Little Memories</h2>
- <p>These frames are waiting for your favourite pictures.</p>
- <div class="photoGrid">
-  <div class="photo">
-   <img id="photo1" alt="Memory one">
-   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo1')">
-   <p>Memory One</p>
-  </div>
-  <div class="photo">
-   <img id="photo2" alt="Memory two">
-   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo2')">
-   <p>Memory Two</p>
-  </div>
-  <div class="photo">
-   <img id="photo3" alt="Memory three">
-   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo3')">
-   <p>Memory Three</p>
-  </div>
-  <div class="photo">
-   <img id="photo4" alt="Memory four">
-   <input type="file" accept="image/*" onchange="loadPhoto(event,'photo4')">
-   <p>Memory Four</p>
-  </div>
- </div>
- <button class="btn" onclick="go('scratch')">NEXT SURPRISE →</button>
+  <div class="tag">CHAPTER 4 · OUR MOMENTS</div>
+  <h2>Our Memory Wall 📸</h2>
+  <p>Tap each photo box to add a picture.</p>
+  <div class="photo-grid" id="photoGrid"></div>
+  <button class="btn" onclick="go('scratch')">Next Surprise 🎁</button>
 </section>
 
+<!-- SCRATCH -->
 <section class="page" id="scratch">
- <div class="tag">CHAPTER 06 · A HIDDEN MESSAGE</div>
- <h2>A Secret Just for You</h2>
- <p>Scratch the golden surface to discover your message.</p>
- <div class="card" style="position:relative;max-width:350px;height:180px;padding:0;overflow:hidden">
-  <div style="position:absolute;inset:0;display:grid;place-items:center;padding:20px">
-   <h2 style="font-size:22px">I am lucky to have you as my Chelli! ❤️</h2>
+  <div class="tag">CHAPTER 5 · HIDDEN MESSAGE</div>
+  <h2>Scratch to Reveal ✨</h2>
+  <p>Use your finger to scratch the card.</p>
+  <div class="scratch">
+    <p>You are my favourite sister in the whole world, chelli! 💖</p>
+    <canvas id="scratchCanvas" width="340" height="170"></canvas>
   </div>
-  <canvas id="scratchCanvas" width="350" height="180"
-   style="position:absolute;inset:0;width:100%;height:100%;touch-action:none">
-  </canvas>
- </div>
- <button class="btn" onclick="revealScratch()">REVEAL MESSAGE</button>
- <button class="btn hidden" id="scratchNext" onclick="go('secret')">NEXT SURPRISE →</button>
+  <button class="btn" id="scratchNext" style="display:none" onclick="go('cards')">Royal Wishes 👑</button>
 </section>
 
-<section class="page" id="secret">
- <div class="crown">🔐</div>
- <div class="tag">THE FINAL ROYAL GATE</div>
- <h2>One Last Surprise</h2>
- <p>Only your birthday can open this special memory.</p>
- <p>Enter your birthday below.</p>
- <input type="date" id="birthdayCode">
- <p id="message"></p>
- <button class="btn" onclick="unlock()">UNLOCK MY SPECIAL PHOTO</button>
+<!-- WISH CARDS -->
+<section class="page" id="cards">
+  <div class="tag">CHAPTER 6 · ROYAL WISHES</div>
+  <h2>Flip Every Card 👑</h2>
+  <p>Four wishes, sealed just for you.</p>
+  <div class="cards" id="cardsBox"></div>
+  <button class="btn" id="cardsNext" style="display:none" onclick="go('unlock')">One Last Secret 🔐</button>
 </section>
 
+<!-- FUN DATE GATE -->
+<section class="page" id="unlock">
+  <div class="crown">🔐</div>
+  <div class="tag">THE FINAL ROYAL GATE</div>
+  <h2>Can You Unlock Your Surprise?</h2>
+  <p>Only the birthday princess knows the secret!</p>
+
+  <div class="card">
+    <p>Enter your birthday date 🎂</p>
+    <input type="date" id="birthdayDate">
+    <p>Enter your secret emoji ❤️</p>
+    <input type="text" id="secretEmoji" placeholder="Your secret emoji">
+    <p id="error"></p>
+    <button class="btn" onclick="unlockSurprise()">Unlock My Surprise 👑</button>
+  </div>
+</section>
+
+<!-- FINAL SURPRISE -->
 <section class="page" id="final">
- <div class="tag">THE ROYAL MEMORY · JUST FOR YOU</div>
- <h1>My Chelli ❤️</h1>
- <p>This final picture is a special memory, saved just for you.</p>
- <div class="bigPhoto">
-  <img id="bigPicture" alt="Your special birthday photo">
-  <input type="file" accept="image/*" onchange="loadPhoto(event,'bigPicture')">
-  <p>YOUR SPECIAL MEMORY</p>
- </div>
- <h2>Forever My Favourite Chelli 👑</h2>
- <p>May your life always be as beautiful as this moment.</p>
- <button class="btn" onclick="celebrate()">🎆 CELEBRATE AGAIN</button>
- <button class="btn secondary" onclick="go('home')">RETURN TO BEGINNING</button>
+  <div class="tag">THE ROYAL CELEBRATION</div>
+  <div class="crown">👑</div>
+  <h1>YOU DID IT!</h1>
+  <h2>HAPPY BIRTHDAY JASMITHA! 🎉</h2>
+  <div class="card">
+    <h2>💖 By Royal Decree 💖</h2>
+    <p>Princess Jasmitha is hereby declared the happiest girl in the kingdom today, entitled to unlimited cake, endless smiles and a sister who loves her forever! 👑</p>
+  </div>
+
+  <div class="photo" style="max-width:300px;width:100%">
+    <img id="finalPhoto" src="" alt="Final birthday memory" style="display:none">
+    <button onclick="chooseFinalPhoto()">＋ Add Your Royal Photo</button>
+    <small>Your special birthday picture 💗</small>
+  </div>
+
+  <h2>🎆 THE CELEBRATION STARTS NOW 🎆</h2>
+  <p>Tap anywhere to create more fireworks!</p>
+  <button class="btn" onclick="bigFinale()">MORE CRACKERS!! 🎇</button>
+  <button class="btn secondary" onclick="go('home')">Start Again ✨</button>
 </section>
 
-</main>
+<button id="music" onclick="toggleMusic()">♫</button>
 
 <script>
-/* IMPORTANT: Set the correct birthday here. */
-const CONFIG={
- birthday:"2008-11-15"
+/* SETTINGS */
+const CONFIG = {
+  birthday: "2008-11-15",
+  emoji: "❤️"
 };
 
-/* Navigation */
+const $ = id => document.getElementById(id);
+
 function go(id){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
-}
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  $(id).classList.add("active");
+  window.scrollTo(0,0);
 
-/* Open royal gates */
-function enterSite(){
- startMusic();
- document.getElementById('gate').classList.add('open');
- setTimeout(()=>document.getElementById('gate').style.display='none',1000);
- hearts(18);
-}
-
-/* Cake */
-function blow(){
- document.getElementById('flames').style.display='none';
- document.getElementById('cakeMessage').textContent=
- "May every beautiful wish of yours come true, Chelli! ❤️";
- hearts(20);
- burst();
-}
-
-/* Five stars */
-const wishList=[
- "May your smile shine every day, Chelli ❤️",
- "May your dreams become reality ✨",
- "May happiness follow you everywhere 🌸",
- "May you always be strong and fearless 👑",
- "You will always be special to me 💛"
-];
-let starCount=0;
-const sky=document.getElementById('sky');
-
-wishList.forEach((wish,i)=>{
- const star=document.createElement('button');
- star.className='wish';star.textContent='✦';
- star.style.left=(10+i*18)+'%';
- star.style.top=(20+(i%3)*25)+'%';
- star.onclick=()=>{
-  if(star.dataset.done)return;
-  star.dataset.done='yes';
-  star.style.opacity='.2';
-  starCount++;
-  document.getElementById('starMessage').textContent=wish;
-  if(starCount===5){
-   document.getElementById('starMessage').textContent="All five wishes are yours, Chelli! 💖";
-   document.getElementById('starNext').classList.remove('hidden');
+  if(id==="final"){
+    bigFinale();
   }
- };
- sky.appendChild(star);
-});
+}
 
-/* Four gift cards */
-const giftMessages=[
- "You deserve all the happiness in this world. 💛",
- "Never stop believing in your dreams. ✨",
- "Your smile is a beautiful gift. 🌸",
- "I will always be proud of you, Chelli. ❤️"
+function openGate(){
+  $("gate").classList.add("hide");
+  startMusic();
+  bigFinale();
+  setTimeout(()=>$("gate").style.display="none",1600);
+}
+
+/* CAKE */
+function blowCake(){
+  $("cakeEmoji").textContent="🎂✨💨";
+  $("cakeNext").style.display="inline-block";
+  burstAt(innerWidth/2,innerHeight/2);
+  hearts(25);
+}
+
+/* STARS */
+const secrets=[
+  "Your smile is special 😊",
+  "Your laugh is unforgettable 😂",
+  "You are a lovely sister 💗",
+  "You make ordinary days better ✨",
+  "You are a gift from God 🕊️"
 ];
-let giftCount=0;
-giftMessages.forEach(msg=>{
- const card=document.createElement('div');
- card.className='flip';
- card.innerHTML='<div class="inner"><div class="front">♛<br>OPEN YOUR GIFT</div><div class="back"></div></div>';
- card.querySelector('.back').textContent=msg;
- card.onclick=()=>{
-  if(card.classList.contains('open'))return;
-  card.classList.add('open');giftCount++;
-  if(giftCount===4)document.getElementById('cardsNext').classList.remove('hidden');
- };
- document.getElementById('cardsArea').appendChild(card);
+let found=0;
+secrets.forEach((message,i)=>{
+  let b=document.createElement("button");
+  b.className="star";
+  b.textContent="✦";
+  b.style.left=(8+i*18)+"%";
+  b.style.top=(20+(i%2)*45)+"%";
+  b.onclick=()=>{
+    if(b.dataset.done)return;
+    b.dataset.done="yes";
+    b.style.opacity=".25";
+    $("message").textContent=message;
+    found++;
+    burstAt(innerWidth/2,innerHeight/2);
+    if(found===5){
+      $("message").textContent="All five stars found! Your letter awaits 💌";
+      $("starNext").style.display="inline-block";
+    }
+  };
+  $("starbox").appendChild(b);
 });
 
-/* Image selection */
-function loadPhoto(event,id){
- const file=event.target.files[0];
- if(!file)return;
- if(!file.type.startsWith('image/')){
-  alert('Please select an image file.');
-  return;
- }
- const reader=new FileReader();
- reader.onload=e=>document.getElementById(id).src=e.target.result;
- reader.readAsDataURL(file);
-}
+/* PHOTO SLOTS */
+const photoNames=[
+  "Our first photo","Best laugh ever",
+  "Favourite day","Crazy moments",
+  "Sweet memories","Forever memories"
+];
 
-/* Scratch card */
-const scratchCanvas=document.getElementById('scratchCanvas');
-const sctx=scratchCanvas.getContext('2d');
-sctx.fillStyle='#b38a42';
-sctx.fillRect(0,0,350,180);
-sctx.fillStyle='#201426';
-sctx.textAlign='center';
-sctx.font='bold 22px Georgia';
-sctx.fillText('SCRATCH TO REVEAL ✨',175,95);
+photoNames.forEach(name=>{
+  let d=document.createElement("div");
+  d.className="photo";
+  d.innerHTML=`<img src="" alt="${name}" style="display:none">
+  <button>＋ Add Photo</button><small>${name}</small>`;
+  d.querySelector("button").onclick=()=>{
+    let input=document.createElement("input");
+    input.type="file";input.accept="image/*";
+    input.onchange=()=>{
+      if(!input.files[0])return;
+      let img=d.querySelector("img");
+      img.src=URL.createObjectURL(input.files[0]);
+      img.style.display="block";
+    };
+    input.click();
+  };
+  $("photoGrid").appendChild(d);
+});
 
-let scratching=false;
+/* SCRATCH CARD */
+const sc=$("scratchCanvas");
+const ctx=sc.getContext("2d");
+let drawing=false;
+
+let gradient=ctx.createLinearGradient(0,0,340,170);
+gradient.addColorStop(0,"#e7a8dc");
+gradient.addColorStop(1,"#ffdc91");
+ctx.fillStyle=gradient;
+ctx.fillRect(0,0,340,170);
+ctx.fillStyle="#43204e";
+ctx.font="22px Georgia";
+ctx.textAlign="center";
+ctx.fillText("✨ Scratch Here ✨",170,95);
+
 function scratch(e){
- const r=scratchCanvas.getBoundingClientRect();
- const x=(e.clientX-r.left)*350/r.width;
- const y=(e.clientY-r.top)*180/r.height;
- sctx.globalCompositeOperation='destination-out';
- sctx.beginPath();sctx.arc(x,y,24,0,Math.PI*2);sctx.fill();
+  let r=sc.getBoundingClientRect();
+  let x=(e.clientX-r.left)*340/r.width;
+  let y=(e.clientY-r.top)*170/r.height;
+  ctx.globalCompositeOperation="destination-out";
+  ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();
 }
-scratchCanvas.addEventListener('pointerdown',e=>{
- scratching=true;
- scratchCanvas.setPointerCapture(e.pointerId);
- scratch(e);
+sc.onpointerdown=e=>{drawing=true;sc.setPointerCapture(e.pointerId);scratch(e)};
+sc.onpointermove=e=>{if(drawing)scratch(e)};
+sc.onpointerup=()=>{
+  drawing=false;
+  let data=ctx.getImageData(0,0,340,170).data;
+  let clear=0;
+  for(let i=3;i<data.length;i+=16)if(data[i]===0)clear++;
+  if(clear/(data.length/16)>.4){
+    sc.style.display="none";
+    $("scratchNext").style.display="inline-block";
+    hearts(20);
+  }
+};
+
+/* FLIP CARDS */
+const wishes=[
+  "May all your dreams come true 🌠",
+  "Never stop smiling, princess 😊",
+  "Stay happy and fearless 👑",
+  "You deserve endless happiness 💗"
+];
+let flipped=0;
+wishes.forEach(w=>{
+  let b=document.createElement("button");
+  b.className="flip";
+  b.textContent="👑 Tap to reveal";
+  b.onclick=()=>{
+    if(b.classList.contains("open"))return;
+    b.classList.add("open");
+    b.textContent=w;
+    flipped++;
+    burstAt(innerWidth/2,innerHeight/2);
+    if(flipped===4)$("cardsNext").style.display="inline-block";
+  };
+  $("cardsBox").appendChild(b);
 });
-scratchCanvas.addEventListener('pointermove',e=>{
- if(scratching)scratch(e);
+
+/* FINAL FUN GATE */
+function unlockSurprise(){
+  let date=$("birthdayDate").value;
+  let emoji=$("secretEmoji").value.trim().replace(/\uFE0F/g,"");
+  let expected=CONFIG.emoji.replace(/\uFE0F/g,"");
+
+  let correctDate=date &&
+    date.slice(5)===CONFIG.birthday.slice(5);
+
+  if(correctDate && emoji===expected){
+    $("error").textContent="The royal gates are opening!! 🎉";
+    burstAt(innerWidth/2,innerHeight/2);
+    setTimeout(()=>go("final"),700);
+  }else{
+    $("error").textContent="Not quite, princess! Try again 💭";
+    hearts(8);
+  }
+}
+
+/* FINAL PHOTO */
+function chooseFinalPhoto(){
+  let input=document.createElement("input");
+  input.type="file";input.accept="image/*";
+  input.onchange=()=>{
+    if(!input.files[0])return;
+    $("finalPhoto").src=URL.createObjectURL(input.files[0]);
+    $("finalPhoto").style.display="block";
+  };
+  input.click();
+}
+
+/* FIREWORKS */
+const canvas=$("fireworks");
+const c=canvas.getContext("2d");
+let W,H,particles=[];
+
+function resize(){
+  W=canvas.width=innerWidth;
+  H=canvas.height=innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+const colours=[
+  "#ff4d8d","#ffd23f","#3bf4fb",
+  "#9b5de5","#7cff6b","#ff8a3d",
+  "#ffffff","#ff6ec7"
+];
+
+function randomColour(){
+  return colours[Math.floor(Math.random()*colours.length)];
+}
+
+function burstAt(x,y){
+  for(let i=0;i<100;i++){
+    let a=Math.PI*2*i/100;
+    let speed=2+Math.random()*7;
+    particles.push({
+      x,y,
+      vx:Math.cos(a)*speed,
+      vy:Math.sin(a)*speed,
+      life:1,
+      colour:randomColour(),
+      size:2+Math.random()*4
+    });
+  }
+}
+
+function bigFinale(){
+  for(let i=0;i<8;i++){
+    setTimeout(()=>{
+      burstAt(
+        60+Math.random()*(W-120),
+        60+Math.random()*(H*.65)
+      );
+    },i*300);
+  }
+  hearts(35);
+}
+
+function animate(){
+  c.clearRect(0,0,W,H);
+  particles=particles.filter(p=>p.life>0);
+
+  particles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.vy+=.035;
+    p.life-=.012;
+
+    c.globalAlpha=Math.max(p.life,0);
+    c.fillStyle=p.colour;
+    c.beginPath();
+    c.arc(p.x,p.y,p.size,0,Math.PI*2);
+    c.fill();
+  });
+
+  c.globalAlpha=1;
+  requestAnimationFrame(animate);
+}
+animate();
+
+document.addEventListener("pointerdown",e=>{
+  if(e.target.closest("button,input,.photo"))return;
+  burstAt(e.clientX,e.clientY);
 });
-scratchCanvas.addEventListener('pointerup',()=>scratching=false);
-scratchCanvas.addEventListener('pointercancel',()=>scratching=false);
 
-function revealScratch(){
- scratchCanvas.style.display='none';
- document.getElementById('scratchNext').classList.remove('hidden');
+/* FLOATING HEARTS */
+function hearts(n){
+  for(let i=0;i<n;i++){
+    let h=document.createElement("span");
+    h.textContent=["💖","✨","🌸","🎉","💗"][i%5];
+    h.style.cssText=`
+      position:fixed;z-index:8;pointer-events:none;
+      left:${Math.random()*100}vw;bottom:-40px;
+      font-size:${18+Math.random()*25}px;
+      animation:floatUp ${3+Math.random()*3}s linear forwards;
+    `;
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6500);
+  }
 }
 
-/* Birthday unlock */
-function unlock(){
- const entered=document.getElementById('birthdayCode').value;
- if(entered===CONFIG.birthday){
-  document.getElementById('message').textContent="The royal gate is open! ❤️";
-  go('final');
-  burst();hearts(30);
- }else{
-  document.getElementById('message').textContent="That date doesn't match. Try again, Chelli. 💭";
- }
-}
+let style=document.createElement("style");
+style.textContent=`
+@keyframes floatUp{
+  to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}`;
+document.head.appendChild(style);
 
-/* Background music: original generated melody */
-let audio=null,musicTimer=null,musicOn=false;
-let noteIndex=0;
-const melody=[261.63,329.63,392,329.63,293.66,349.23,440,392];
+/* MUSIC */
+let audio=null,musicOn=false,musicTimer=null;
 
 function startMusic(){
- if(musicOn)return;
- const AudioContext=window.AudioContext||window.webkitAudioContext;
- if(!AudioContext)return;
- audio=audio||new AudioContext();
- audio.resume();
- musicOn=true;
- document.getElementById('musicBtn').textContent='♫ Music: ON';
- playNote();
- musicTimer=setInterval(playNote,650);
-}
-function playNote(){
- if(!audio||!musicOn)return;
- const osc=audio.createOscillator();
- const gain=audio.createGain();
- osc.type='sine';
- osc.frequency.value=melody[noteIndex%melody.length];
- gain.gain.setValueAtTime(.0001,audio.currentTime);
- gain.gain.exponentialRampToValueAtTime(.045,audio.currentTime+.08);
- gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+.55);
- osc.connect(gain);gain.connect(audio.destination);
- osc.start();osc.stop(audio.currentTime+.6);
- noteIndex++;
-}
-function toggleMusic(){
- if(!musicOn){
-  startMusic();
- }else{
-  musicOn=false;
-  clearInterval(musicTimer);
-  document.getElementById('musicBtn').textContent='♫ Music: OFF';
- }
+  if(musicOn)return;
+  try{
+    audio=new(window.AudioContext||window.webkitAudioContext)();
+    musicOn=true;
+    playTune();
+  }catch(e){}
 }
 
-/* Cracker / firework sound effect */
-let lastBoom=0;
-function crackerSound(){
- const now=Date.now();
- if(now-lastBoom<250)return;
- lastBoom=now;
- const AudioContext=window.AudioContext||window.webkitAudioContext;
- if(!AudioContext)return;
- audio=audio||new AudioContext();
- audio.resume();
+const notes=[523,523,587,523,698,659,523,523,587,523,784,698,523,523,1046,880,698,659,587,932,932,880,698,784,698];
 
- const duration=.35;
- const buffer=audio.createBuffer(1,audio.sampleRate*duration,audio.sampleRate);
- const data=buffer.getChannelData(0);
- for(let i=0;i<data.length;i++){
-  data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,3);
- }
- const source=audio.createBufferSource();
- const gain=audio.createGain();
- const filter=audio.createBiquadFilter();
- filter.type='lowpass';filter.frequency.value=1800;
- gain.gain.setValueAtTime(.22,audio.currentTime);
- gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);
- source.buffer=buffer;
- source.connect(filter);filter.connect(gain);gain.connect(audio.destination);
- source.start();
-}
-
-/* Sparkles on touch */
-let lastSpark=0;
-function touchSpark(e){
- const now=Date.now();
- if(now-lastSpark<45)return;
- lastSpark=now;
- const x=e.clientX,y=e.clientY;
- const symbols=['✦','✧','✨','⋆','💫'];
- for(let i=0;i<3;i++){
-  const el=document.createElement('span');
-  el.className='spark';
-  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-  el.style.left=(x+(Math.random()-.5)*45)+'px';
-  el.style.top=(y+(Math.random()-.5)*45)+'px';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),850);
- }
-}
-document.addEventListener('pointerdown',e=>{
- touchSpark(e);
- crackerSound();
-});
-
-/* Floating hearts */
-function hearts(n){
- for(let i=0;i<n;i++){
-  const h=document.createElement('div');
-  h.className='heart';
-  h.textContent=['💛','💖','✨','🌸'][Math.floor(Math.random()*4)];
-  h.style.left=Math.random()*100+'vw';
-  h.style.animationDuration=(3+Math.random()*3)+'s';
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6500);
- }
-}
-
-/* Fireworks */
-const fx=document.getElementById('fireworks');
-const fctx=fx.getContext('2d');
-let particles=[];
-function resizeFX(){
- fx.width=window.innerWidth;
- fx.height=window.innerHeight;
-}
-resizeFX();window.addEventListener('resize',resizeFX);
-
-function burst(){
- const x=Math.random()*fx.width;
- const y=Math.random()*fx.height*.6;
- for(let i=0;i<65;i++){
-  const angle=Math.PI*2*i/65;
-  const speed=1+Math.random()*5;
-  particles.push({
-   x,y,vx:Math.cos(angle)*speed,
-   vy:Math.sin(angle)*speed,life:1,
-   color:['#ffe6a1','#d8a8ff','#ff9bc5','#ffffff'][Math.floor(Math.random()*4)]
+function playTune(){
+  if(!musicOn||!audio)return;
+  let t=audio.currentTime+.1;
+  notes.forEach((f,i)=>{
+    let o=audio.createOscillator();
+    let g=audio.createGain();
+    o.type="triangle";
+    o.frequency.value=f;
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.linearRampToValueAtTime(.12,t+.03);
+    g.gain.exponentialRampToValueAtTime(.001,t+.28);
+    o.connect(g);g.connect(audio.destination);
+    o.start(t);o.stop(t+.3);
+    t+=.32;
   });
- }
-}
-function animateFX(){
- fctx.clearRect(0,0,fx.width,fx.height);
- particles=particles.filter(p=>p.life>0);
- particles.forEach(p=>{
-  p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.life-=.018;
-  fctx.globalAlpha=p.life;fctx.fillStyle=p.color;
-  fctx.beginPath();fctx.arc(p.x,p.y,3,0,Math.PI*2);fctx.fill();
- });
- fctx.globalAlpha=1;
- requestAnimationFrame(animateFX);
-}
-animateFX();
-function celebrate(){
- hearts(45);
- for(let i=0;i<10;i++)setTimeout(burst,i*300);
+  musicTimer=setTimeout(playTune,notes.length*320+500);
 }
 
-/* Starry background */
-const bgCanvas=document.getElementById('stars');
-const bgctx=bgCanvas.getContext('2d');
-let points=[];
-function resizeStars(){
- bgCanvas.width=window.innerWidth;
- bgCanvas.height=window.innerHeight;
- points=Array.from({length:110},()=>({
-  x:Math.random()*bgCanvas.width,
-  y:Math.random()*bgCanvas.height,
-  r:Math.random()*1.6+.3,
-  a:Math.random()*6
- }));
+function toggleMusic(){
+  if(!musicOn){
+    startMusic();
+    $("music").textContent="♫";
+  }else{
+    musicOn=false;
+    clearTimeout(musicTimer);
+    if(audio)audio.suspend();
+    $("music").textContent="♪";
+  }
 }
-resizeStars();window.addEventListener('resize',resizeStars);
-function drawStars(){
- bgctx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
- points.forEach(s=>{
-  s.a+=.025;
-  bgctx.globalAlpha=.2+Math.abs(Math.sin(s.a))*.7;
-  bgctx.fillStyle='#ffe6a1';
-  bgctx.beginPath();bgctx.arc(s.x,s.y,s.r,0,Math.PI*2);bgctx.fill();
- });
- bgctx.globalAlpha=1;
- requestAnimationFrame(drawStars);
-}
-drawStars();
+
 </script>
 </body>
 </html>
